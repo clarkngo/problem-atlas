@@ -102,6 +102,21 @@ export function DetailDrawer({ index, node, onClose, onNavigate }: Props) {
             <span className="font-semibold">{SENSITIVITY[node.dataSensitivity].label}. </span>
             {SENSITIVITY[node.dataSensitivity].blurb}
           </div>
+          {node.regulations && node.regulations.length > 0 && (
+            <dl className="mt-3 space-y-2 text-xs">
+              {node.regulations.map((code) => (
+                <div key={code} className="rounded-lg border border-slate-200 px-3 py-2 dark:border-slate-700">
+                  <dt className="font-semibold text-slate-900 dark:text-slate-100">
+                    {code}
+                    {index.regulations[code] && index.regulations[code].name !== code && (
+                      <span className="font-normal text-slate-500 dark:text-slate-400"> · {index.regulations[code].name}</span>
+                    )}
+                  </dt>
+                  {index.regulations[code] && <dd className="mt-0.5">{index.regulations[code].summary}</dd>}
+                </div>
+              ))}
+            </dl>
+          )}
           {node.details.privacyNotes && node.details.privacyNotes.length > 0 && (
             <ul className="mt-3 space-y-2">
               {node.details.privacyNotes.map((p) => (

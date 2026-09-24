@@ -7,14 +7,21 @@ export type SolutionCategory =
   | 'Requirements Gap';
 
 /**
- * Most sensitive data the outcome would touch.
- *  public      catalog, published policy, no student records
- *  internal    institutional operations data, no student-identifiable records
- *  ferpa       education records / student PII protected by FERPA
- *  restricted  FERPA plus stricter regimes: SSNs, FAFSA federal tax info,
- *              GLBA-covered aid data, health/counseling, disability, Title IX
+ * Most sensitive data the outcome would touch. Which law applies is named
+ * per outcome in `regulations`.
+ *  public      published or aggregate data, no personal records
+ *  internal    operational data without personal or protected records
+ *  regulated   personal data protected by a sector law (FERPA, HIPAA, CJIS…)
+ *  restricted  the highest tier inside a regime: SSNs, federal tax info,
+ *              SUD/psychotherapy notes, juvenile or victim records,
+ *              security-sensitive plans
  */
-export type DataSensitivity = 'public' | 'internal' | 'ferpa' | 'restricted';
+export type DataSensitivity = 'public' | 'internal' | 'regulated' | 'restricted';
+
+export interface Regulation {
+  name: string;
+  summary: string;
+}
 
 /** How ready the organization typically is to act on this outcome. */
 export type Readiness = 'ready' | 'needs-work' | 'blocked';
@@ -56,12 +63,16 @@ export interface SolutionNode extends BaseNode {
   solutionCategory: SolutionCategory;
   readiness: Readiness;
   dataSensitivity: DataSensitivity;
+  /** Keys into Taxonomy.regulations, most relevant first. */
+  regulations?: string[];
   details: SolutionDetails;
 }
 
 export type AtlasNode = BranchNode | ScenarioNode | SolutionNode;
 
 export interface Taxonomy {
+  /** Glossary of the laws and standards outcomes refer to. */
+  regulations?: Record<string, Regulation>;
   nodes: AtlasNode[];
 }
 

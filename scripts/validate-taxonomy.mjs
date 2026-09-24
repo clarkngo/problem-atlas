@@ -3,12 +3,12 @@
 import { readFileSync } from 'node:fs';
 
 const file = new URL('../public/data/taxonomy.json', import.meta.url);
-const { nodes } = JSON.parse(readFileSync(file, 'utf8'));
+const { nodes, regulations = {} } = JSON.parse(readFileSync(file, 'utf8'));
 
 const TIERS = ['industry', 'domain', 'role', 'scenario', 'solution'];
 const CATEGORIES = ['AI Solution', 'Process Improvement', 'Automation Fit', 'Requirements Gap'];
 const READINESS = ['ready', 'needs-work', 'blocked'];
-const SENSITIVITY = ['public', 'internal', 'ferpa', 'restricted'];
+const SENSITIVITY = ['public', 'internal', 'regulated', 'restricted'];
 
 const errors = [];
 const err = (id, msg) => errors.push(`${id}: ${msg}`);
@@ -56,9 +56,19 @@ for (const n of nodes) {
     if (!d.description) err(n.id, 'missing details.description');
     if (!d.implementationSteps?.length) err(n.id, 'missing details.implementationSteps');
     if (!d.keyBlockers?.length) err(n.id, 'missing details.keyBlockers');
-    if ((n.dataSensitivity === 'ferpa' || n.dataSensitivity === 'restricted') && !d.privacyNotes?.length)
+    const protectedData = n.dataSensitivity === 'regulated' || n.dataSensitivity === 'restricted';
+    if (protectedData && !d.privacyNotes?.length)
       err(n.id, `${n.dataSensitivity} outcomes must explain their privacy handling in details.privacyNotes`);
+    if (protectedData && !n.regulations?.length)
+      err(n.id, `${n.dataSensitivity} outcomes must name the governing law(s) in regulations`);
+    for (const r of n.regulations ?? []) if (!regulations[r]) err(n.id, `regulation "${r}" is not defined in the top-level regulations glossary`);
   }
+}
+
+const used = new Set(nodes.flatMap((n) => n.regulations ?? []));
+for (const [code, r] of Object.entries(regulations)) {
+  if (!r.name || !r.summary) err(`regulations.${code}`, 'needs name and summary');
+  if (!used.has(code)) err(`regulations.${code}`, 'defined but never used');
 }
 
 if (errors.length) {

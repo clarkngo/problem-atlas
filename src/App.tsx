@@ -69,7 +69,9 @@ function Atlas({ index }: { index: GraphIndex }) {
     window.matchMedia('(max-width: 640px)').matches ? 'TB' : 'LR',
   );
   const [expanded, setExpandedSet] = useState<Set<string>>(() => {
-    const initial = new Set(index.rootIds);
+    // One industry: open it. Several: land on the industry cards so the first
+    // view stays legible instead of fitting every department at once.
+    const initial = new Set(index.rootIds.length === 1 ? index.rootIds : []);
     const deep = idFromHash();
     if (deep && index.byId.has(deep)) index.pathTo(deep).slice(0, -1).forEach((id) => initial.add(id));
     return initial;
