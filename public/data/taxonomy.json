@@ -1,0 +1,2082 @@
+{
+  "nodes": [
+    {
+      "id": "ind-highered",
+      "label": "Higher Education",
+      "type": "industry",
+      "parentId": null,
+      "childrenIds": [
+        "dom-research",
+        "dom-academic-affairs",
+        "dom-enrollment",
+        "dom-student-success",
+        "dom-registrar",
+        "dom-student-affairs",
+        "dom-it-data",
+        "dom-library"
+      ],
+      "summary": "Colleges and universities: research, teaching, enrollment, student success, and the offices that support them."
+    },
+    {
+      "id": "dom-research",
+      "label": "Research & Sponsored Programs",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-researcher",
+        "role-research-admin",
+        "role-irb-coordinator"
+      ],
+      "summary": "Funded research, compliance, and human-subjects protection."
+    },
+    {
+      "id": "role-researcher",
+      "label": "Researcher / PI",
+      "type": "role",
+      "parentId": "dom-research",
+      "childrenIds": [
+        "task-grant-proposal"
+      ],
+      "summary": "Principal investigators running funded research programs."
+    },
+    {
+      "id": "task-grant-proposal",
+      "label": "Grant Proposal Literature Review",
+      "type": "scenario",
+      "parentId": "role-researcher",
+      "childrenIds": [
+        "sol-rag-agent",
+        "sol-lit-protocol",
+        "sol-req-gap"
+      ],
+      "tags": [
+        "grants",
+        "proposal"
+      ],
+      "details": {
+        "context": "PIs preparing NIH or NSF proposals spend weeks assembling a literature review that establishes novelty. Sources include PubMed, discipline repositories, preprints, and the lab’s own publications.",
+        "problemStatement": "Synthesizing hundreds of papers into a well-cited background section is slow, and reviewers, not the team, often find the coverage gaps."
+      }
+    },
+    {
+      "id": "sol-rag-agent",
+      "label": "RAG Literature Synthesis Agent",
+      "type": "solution",
+      "parentId": "task-grant-proposal",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "rag",
+        "citations",
+        "grants"
+      ],
+      "details": {
+        "description": "Deploy a retrieval-augmented agent over a curated corpus (lab library plus licensed databases) that drafts thematic summaries with inline citations and flags contradictory findings.",
+        "pattern": "Retrieval-augmented generation with citation grounding and a human review pass.",
+        "signals": [
+          "The team already keeps a shared reference library (Zotero, EndNote, Mendeley).",
+          "Background sections get rewritten from scratch every proposal cycle."
+        ],
+        "implementationSteps": [
+          "Export the lab reference library, plus any full texts the institution is licensed to mine, into a document store.",
+          "Chunk and embed the papers, keeping DOI and page anchors on every chunk.",
+          "Write prompts that require a citation for every claim and refuse unsupported statements.",
+          "Pilot on one past proposal and have the PI score coverage and citation accuracy."
+        ],
+        "keyBlockers": [
+          "Publisher licenses may prohibit bulk text mining. Check with the library.",
+          "A hallucinated citation is disqualifying in peer review, so verification cannot be skipped."
+        ],
+        "privacyNotes": [
+          "Published literature carries no student or subject PII.",
+          "Keep unpublished data, draft aims, and any human-subjects data out of third-party tools unless the tool is institutionally approved. Pre-publication ideas are also sensitive IP."
+        ]
+      }
+    },
+    {
+      "id": "sol-lit-protocol",
+      "label": "Shared Literature Review Protocol",
+      "type": "solution",
+      "parentId": "task-grant-proposal",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "sop",
+        "knowledge management"
+      ],
+      "details": {
+        "description": "Standardize how the lab screens, tags, and annotates papers so review work compounds across proposals instead of restarting each cycle.",
+        "pattern": "Standard operating procedure and a shared tag taxonomy.",
+        "signals": [
+          "Each postdoc keeps private notes in a different format.",
+          "The same papers are re-read for every proposal."
+        ],
+        "implementationSteps": [
+          "Agree on a tag taxonomy: method, population, finding, relevance.",
+          "Adopt one group library with required annotation fields.",
+          "Hold a 30-minute monthly triage session to tag new papers."
+        ],
+        "keyBlockers": [
+          "Adoption depends on the PI enforcing it.",
+          "Legacy notes need a one-time migration."
+        ]
+      }
+    },
+    {
+      "id": "sol-req-gap",
+      "label": "Full-Text Access Gap",
+      "type": "solution",
+      "parentId": "task-grant-proposal",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "public",
+      "tags": [
+        "licensing",
+        "data access",
+        "ocr"
+      ],
+      "details": {
+        "description": "Many key sources are paywalled or exist only as scanned PDFs. Until access and OCR are solved, any automated synthesis will over-represent open-access literature.",
+        "pattern": "Data-availability and licensing prerequisite.",
+        "signals": [
+          "Automated searches return only abstracts for a large share of hits.",
+          "Older foundational papers are image-only PDFs."
+        ],
+        "implementationSteps": [
+          "Inventory which databases the library licenses for text and data mining.",
+          "Run OCR on image-only PDFs and spot-check quality.",
+          "State the coverage limits in the proposal methodology."
+        ],
+        "keyBlockers": [
+          "License negotiations move on library procurement timelines.",
+          "OCR handles equations and tables poorly."
+        ]
+      }
+    },
+    {
+      "id": "role-research-admin",
+      "label": "Research Administrator",
+      "type": "role",
+      "parentId": "dom-research",
+      "childrenIds": [
+        "task-grant-reporting"
+      ],
+      "summary": "Department or central staff managing post-award finances and compliance."
+    },
+    {
+      "id": "task-grant-reporting",
+      "label": "Sponsored Award Financial Reporting",
+      "type": "scenario",
+      "parentId": "role-research-admin",
+      "childrenIds": [
+        "sol-award-report-sync",
+        "sol-effort-data-gap"
+      ],
+      "tags": [
+        "post-award",
+        "finance"
+      ],
+      "details": {
+        "context": "After an award, administrators reconcile spending against budgets and submit periodic financial and effort reports to sponsors.",
+        "problemStatement": "Expenditures live in the ERP and effort lives in spreadsheets, so every report is a manual reconciliation that delays submission."
+      }
+    },
+    {
+      "id": "sol-award-report-sync",
+      "label": "ERP-to-Sponsor Report Sync",
+      "type": "solution",
+      "parentId": "task-grant-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "erp",
+        "batch",
+        "reporting"
+      ],
+      "details": {
+        "description": "A nightly job pulls expenditures by award from the ERP, fills the sponsor report templates, and highlights variances for review.",
+        "pattern": "Batch ETL with templated report generation.",
+        "signals": [
+          "Reports are built by pasting ERP exports into Excel.",
+          "Report formats stay the same across periods."
+        ],
+        "implementationSteps": [
+          "Map ERP cost objects to sponsor budget categories.",
+          "Build a scheduled extract using a read-only service account.",
+          "Generate draft reports and a variance summary for the administrator to approve."
+        ],
+        "keyBlockers": [
+          "ERP reporting access usually needs a central IT change request.",
+          "Budget category mappings differ by sponsor."
+        ],
+        "privacyNotes": [
+          "Salary and payroll lines are employee PII. They are not FERPA records, but they need HR-level access controls.",
+          "Graduate assistants are both employees and students. Keep their academic records out of payroll extracts."
+        ]
+      }
+    },
+    {
+      "id": "sol-effort-data-gap",
+      "label": "No System of Record for Effort",
+      "type": "solution",
+      "parentId": "task-grant-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "blocked",
+      "dataSensitivity": "internal",
+      "tags": [
+        "compliance",
+        "system of record"
+      ],
+      "details": {
+        "description": "Effort percentages live in personal spreadsheets with no system of record, so they can be neither automated nor audited.",
+        "signals": [
+          "Two spreadsheets disagree about the same person’s effort.",
+          "Audit findings cite effort documentation."
+        ],
+        "implementationSteps": [
+          "Designate a system of record for effort, in HR or research administration.",
+          "Define who certifies effort and how often.",
+          "Backfill the current fiscal year."
+        ],
+        "keyBlockers": [
+          "Requires a policy decision from the Office of Sponsored Programs.",
+          "Faculty push back on additional certification steps."
+        ]
+      }
+    },
+    {
+      "id": "role-irb-coordinator",
+      "label": "IRB Coordinator",
+      "type": "role",
+      "parentId": "dom-research",
+      "childrenIds": [
+        "task-irb-review"
+      ],
+      "summary": "Supports the Institutional Review Board’s review of human-subjects research."
+    },
+    {
+      "id": "task-irb-review",
+      "label": "Protocol Pre-Review Backlog",
+      "type": "scenario",
+      "parentId": "role-irb-coordinator",
+      "childrenIds": [
+        "sol-irb-precheck",
+        "sol-irb-routing",
+        "sol-studies-exception-gap"
+      ],
+      "tags": [
+        "irb",
+        "human subjects"
+      ],
+      "details": {
+        "context": "Submissions arrive incomplete: consent forms are missing, data-security plans are vague, and recruitment materials are absent. Coordinators return them several times before the board ever sees them.",
+        "problemStatement": "Weeks of back-and-forth delay student theses and funded studies, and board meetings are spent on completeness instead of risk."
+      }
+    },
+    {
+      "id": "sol-irb-precheck",
+      "label": "Protocol Completeness Pre-Check",
+      "type": "solution",
+      "parentId": "task-irb-review",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "irb",
+        "checklist"
+      ],
+      "details": {
+        "description": "An assistant checks a submitted protocol against the IRB checklist and drafts a return memo listing missing or inconsistent items. The coordinator edits and sends it.",
+        "pattern": "Checklist-grounded document review with a human sender.",
+        "implementationSteps": [
+          "Turn the IRB checklist into explicit, testable criteria.",
+          "Run the check on 30 past submissions and compare the results to what coordinators actually flagged.",
+          "Deploy inside the IRB system so protocols never leave it."
+        ],
+        "keyBlockers": [
+          "The model must never make, or appear to make, an approval determination."
+        ],
+        "privacyNotes": [
+          "Protocols describe how data will be collected but should not contain participant data. Reject any submission that attaches identifiable data.",
+          "Use an institutionally approved model deployment. Unfunded study designs are confidential."
+        ]
+      }
+    },
+    {
+      "id": "sol-irb-routing",
+      "label": "Tiered Exempt / Expedited Routing",
+      "type": "solution",
+      "parentId": "task-irb-review",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "common rule",
+        "triage"
+      ],
+      "details": {
+        "description": "A short screening questionnaire routes clearly exempt studies to a lightweight path, so full-board capacity goes to higher-risk research.",
+        "implementationSteps": [
+          "Write the decision tree from the Common Rule exemption categories (45 CFR 46.104).",
+          "Pilot it with student theses.",
+          "Audit a sample of exempt determinations each quarter."
+        ],
+        "keyBlockers": [
+          "IRB chair and board buy-in."
+        ]
+      }
+    },
+    {
+      "id": "sol-studies-exception-gap",
+      "label": "Research Using Student Records Lacks Agreements",
+      "type": "solution",
+      "parentId": "task-irb-review",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "ferpa",
+        "research data",
+        "de-identification"
+      ],
+      "details": {
+        "description": "Education research often wants grades, enrollment, or LMS data, but there is no standard path for releasing identifiable education records to researchers.",
+        "implementationSteps": [
+          "Create a data-request process jointly owned by the registrar, IR, and the IRB.",
+          "Default to de-identified extracts with small-cell suppression.",
+          "Use the FERPA studies exception, with a written agreement, only when identifiable data is truly needed."
+        ],
+        "keyBlockers": [
+          "Registrar, IR, and IRB each assume one of the others owns this."
+        ],
+        "privacyNotes": [
+          "IRB approval alone does not authorize disclosure of education records. FERPA needs student consent, a qualifying exception, or properly de-identified data.",
+          "The studies exception (34 CFR 99.31(a)(6)) requires a written agreement that limits use and requires destruction when the study ends.",
+          "Instructors studying their own students must separate their teacher role from their researcher role to avoid coercion and unauthorized access."
+        ]
+      }
+    },
+    {
+      "id": "dom-academic-affairs",
+      "label": "Teaching & Learning",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-faculty",
+        "role-instructional-designer",
+        "role-dept-chair"
+      ],
+      "summary": "Instruction, course design, and academic department operations."
+    },
+    {
+      "id": "role-faculty",
+      "label": "Faculty / Instructor",
+      "type": "role",
+      "parentId": "dom-academic-affairs",
+      "childrenIds": [
+        "task-feedback-at-scale",
+        "task-grade-comms"
+      ],
+      "summary": "Designs and teaches courses and evaluates student work."
+    },
+    {
+      "id": "task-feedback-at-scale",
+      "label": "Feedback on Student Writing at Scale",
+      "type": "scenario",
+      "parentId": "role-faculty",
+      "childrenIds": [
+        "sol-feedback-drafts",
+        "sol-rubric-calibration",
+        "sol-ai-policy-gap"
+      ],
+      "tags": [
+        "grading",
+        "feedback"
+      ],
+      "details": {
+        "context": "Instructors in large writing-intensive courses give detailed feedback on hundreds of drafts per term, often with TA help of varying quality.",
+        "problemStatement": "Feedback arrives too late to improve the next draft, and grading consistency across sections is uneven."
+      }
+    },
+    {
+      "id": "sol-feedback-drafts",
+      "label": "Rubric-Aligned Feedback Drafts",
+      "type": "solution",
+      "parentId": "task-feedback-at-scale",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "feedback",
+        "lms",
+        "writing"
+      ],
+      "details": {
+        "description": "An approved AI tool inside the LMS drafts rubric-aligned comments on each submission. The instructor or TA edits them and assigns every grade.",
+        "pattern": "Human-in-the-loop drafting. The AI never grades.",
+        "signals": [
+          "A clear, criterion-based rubric already exists.",
+          "Most comments repeat across students."
+        ],
+        "implementationSteps": [
+          "Use only an institutionally approved tool with a signed data agreement.",
+          "Load the rubric and exemplar comments. Do not load past students’ graded work.",
+          "Tell students in the syllabus how AI is used in feedback.",
+          "Spot-check drafted feedback for bias and accuracy each week."
+        ],
+        "keyBlockers": [
+          "Depends on an approved tool existing (see the policy gap).",
+          "Faculty governance may require a senate-approved AI policy."
+        ],
+        "privacyNotes": [
+          "Student submissions and grades are education records.",
+          "A vendor processing education records must qualify under FERPA’s school-official exception: it performs an institutional function, stays under the institution’s direct control, and uses records only for that purpose (34 CFR 99.31(a)(1)).",
+          "The contract must prohibit the vendor from using student data to train or improve its models, and must require deletion when the contract ends.",
+          "Never paste student work into a personal or consumer AI account. That is an unauthorized disclosure."
+        ]
+      }
+    },
+    {
+      "id": "sol-rubric-calibration",
+      "label": "Rubric Calibration & Exemplar Bank",
+      "type": "solution",
+      "parentId": "task-feedback-at-scale",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "norming",
+        "rubrics"
+      ],
+      "details": {
+        "description": "Short norming sessions and a shared bank of annotated exemplars make feedback faster and consistent across TAs, with no new technology.",
+        "implementationSteps": [
+          "Hold a 45-minute norming session each term on three sample papers.",
+          "Build an exemplar bank at each rubric level.",
+          "Maintain a shared comment library in the LMS."
+        ],
+        "keyBlockers": [
+          "TA turnover every term."
+        ],
+        "privacyNotes": [
+          "Exemplars from real students must be de-identified and used with the student’s written permission, or written by the instructor."
+        ]
+      }
+    },
+    {
+      "id": "sol-ai-policy-gap",
+      "label": "No Approved AI Tool or Policy",
+      "type": "solution",
+      "parentId": "task-feedback-at-scale",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "blocked",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "policy",
+        "shadow ai",
+        "governance"
+      ],
+      "details": {
+        "description": "Instructors want AI help but no tool is approved for student data, so they either do without or use consumer tools and create unmanaged FERPA exposure.",
+        "implementationSteps": [
+          "Publish interim guidance: no student PII in unapproved tools.",
+          "Route requests through the AI tool vetting process (IT Security & Privacy).",
+          "Offer at least one approved option so the risky path isn’t the only path."
+        ],
+        "keyBlockers": [
+          "Contract negotiation with vendors.",
+          "Needs academic governance to weigh in on instructional use."
+        ],
+        "privacyNotes": [
+          "Shadow AI use is the most common real-world FERPA risk here. Fix it by offering a sanctioned option, not only by prohibiting."
+        ]
+      }
+    },
+    {
+      "id": "task-grade-comms",
+      "label": "Grade & Progress Communication",
+      "type": "scenario",
+      "parentId": "role-faculty",
+      "childrenIds": [
+        "sol-missing-work-nudges",
+        "sol-grade-posting-sop"
+      ],
+      "tags": [
+        "grades",
+        "communication"
+      ],
+      "details": {
+        "context": "Instructors field repeated emails about grades, missing work, and standing in the course, sometimes from parents.",
+        "problemStatement": "Students learn they are failing too late, and ad-hoc communication creates privacy mistakes."
+      }
+    },
+    {
+      "id": "sol-missing-work-nudges",
+      "label": "Automated Missing-Work Nudges",
+      "type": "solution",
+      "parentId": "task-grade-comms",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "lms",
+        "nudges",
+        "early alert"
+      ],
+      "details": {
+        "description": "The LMS automatically messages a student when an assignment is missing or their grade drops below a threshold, and links to support resources.",
+        "implementationSteps": [
+          "Enable LMS rules for missing submissions and grade thresholds.",
+          "Write supportive message templates that link to tutoring and advising.",
+          "Send an opt-in weekly digest to the student’s advisor."
+        ],
+        "keyBlockers": [
+          "Messages that feel punitive backfire. Test the wording with students."
+        ],
+        "privacyNotes": [
+          "Send only through institutional channels (LMS inbox, institutional email) to the student.",
+          "Do not send grades to parents without the student’s written consent. FERPA rights belong to the student at the postsecondary level.",
+          "Advisors can receive alerts under legitimate educational interest."
+        ]
+      }
+    },
+    {
+      "id": "sol-grade-posting-sop",
+      "label": "Grade Privacy Practices",
+      "type": "solution",
+      "parentId": "task-grade-comms",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "ferpa training",
+        "grades"
+      ],
+      "details": {
+        "description": "A one-page guide for instructors and TAs: how to share grades, handle parent calls, and return work without exposing records.",
+        "implementationSteps": [
+          "Publish do/don’t guidance with the registrar.",
+          "Add it to TA onboarding.",
+          "Route parent inquiries to a standard response."
+        ],
+        "keyBlockers": [
+          "Reaching adjuncts and TAs."
+        ],
+        "privacyNotes": [
+          "Never post grades by name, student ID, or partial SSN. Use the LMS gradebook.",
+          "Don’t leave graded work in a public pile, or discuss one student’s grades in front of others.",
+          "A parent claiming the student is a tax dependent should be referred to the registrar, who verifies dependency before any disclosure."
+        ]
+      }
+    },
+    {
+      "id": "role-instructional-designer",
+      "label": "Instructional Designer",
+      "type": "role",
+      "parentId": "dom-academic-affairs",
+      "childrenIds": [
+        "task-accessibility-remediation"
+      ],
+      "summary": "Partners with faculty on course design, media, and accessibility."
+    },
+    {
+      "id": "task-accessibility-remediation",
+      "label": "Course Material Accessibility Remediation",
+      "type": "scenario",
+      "parentId": "role-instructional-designer",
+      "childrenIds": [
+        "sol-alt-caption-drafts",
+        "sol-a11y-scan",
+        "sol-accessible-templates"
+      ],
+      "tags": [
+        "accessibility",
+        "ada"
+      ],
+      "details": {
+        "context": "Thousands of legacy PDFs, slide decks, and videos in the LMS lack alt text, captions, and proper structure. The 2024 DOJ ADA Title II rule sets WCAG 2.1 AA as the standard for public institutions.",
+        "problemStatement": "Manual remediation cannot keep pace, and students with disabilities wait for accessible versions."
+      }
+    },
+    {
+      "id": "sol-alt-caption-drafts",
+      "label": "AI Alt Text & Caption Drafts",
+      "type": "solution",
+      "parentId": "task-accessibility-remediation",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "accessibility",
+        "captions",
+        "wcag"
+      ],
+      "details": {
+        "description": "AI generates draft captions, transcripts, and alt text in bulk. Designers review drafts for complex images such as charts and equations.",
+        "implementationSteps": [
+          "Prioritize the highest-enrollment courses.",
+          "Auto-caption, then human-correct technical vocabulary.",
+          "Log remediation status per course."
+        ],
+        "keyBlockers": [
+          "STEM notation and discipline-specific diagrams still need experts."
+        ],
+        "privacyNotes": [
+          "Instructor-created content has no student PII and can be processed freely under the vendor agreement.",
+          "Lecture recordings where students are identifiable, by voice, face, or name, can be education records. Process them only with an approved vendor, or edit students out before processing."
+        ]
+      }
+    },
+    {
+      "id": "sol-a11y-scan",
+      "label": "Scheduled LMS Accessibility Scans",
+      "type": "solution",
+      "parentId": "task-accessibility-remediation",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "wcag",
+        "lms"
+      ],
+      "details": {
+        "description": "An accessibility checker scans every course shell on a schedule and sends each instructor a prioritized fix list.",
+        "implementationSteps": [
+          "Enable the LMS-integrated checker.",
+          "Send scheduled reports to departments.",
+          "Track the trend by college."
+        ],
+        "keyBlockers": [
+          "Checkers catch only part of WCAG issues. Manual review is still needed."
+        ]
+      }
+    },
+    {
+      "id": "sol-accessible-templates",
+      "label": "Accessible-by-Default Templates",
+      "type": "solution",
+      "parentId": "task-accessibility-remediation",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "templates",
+        "universal design"
+      ],
+      "details": {
+        "description": "Provide accessible slide, syllabus, and document templates, plus short training, so new content is accessible from the start.",
+        "implementationSteps": [
+          "Publish templates with built-in heading structure.",
+          "Run 20-minute workshops.",
+          "Make templates the default in the course shell."
+        ],
+        "keyBlockers": [
+          "Faculty habits."
+        ]
+      }
+    },
+    {
+      "id": "role-dept-chair",
+      "label": "Department Chair",
+      "type": "role",
+      "parentId": "dom-academic-affairs",
+      "childrenIds": [
+        "task-course-scheduling"
+      ],
+      "summary": "Manages course schedules, teaching assignments, and department operations."
+    },
+    {
+      "id": "task-course-scheduling",
+      "label": "Course Section Scheduling",
+      "type": "scenario",
+      "parentId": "role-dept-chair",
+      "childrenIds": [
+        "sol-schedule-optimizer",
+        "sol-scheduling-data-gap",
+        "sol-scheduling-calendar"
+      ],
+      "tags": [
+        "scheduling"
+      ],
+      "details": {
+        "context": "Chairs build next term’s schedule by copying last year’s and adjusting by email, balancing faculty availability, rooms, and student demand.",
+        "problemStatement": "Required courses conflict, sections fill or sit empty, and students’ time to degree grows."
+      }
+    },
+    {
+      "id": "sol-schedule-optimizer",
+      "label": "Demand-Based Schedule Draft",
+      "type": "solution",
+      "parentId": "task-course-scheduling",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "optimization",
+        "scheduling"
+      ],
+      "details": {
+        "description": "A constraint solver drafts a schedule from aggregate demand (waitlists, degree-plan projections), room capacity, and faculty constraints.",
+        "implementationSteps": [
+          "Gather aggregate demand by course.",
+          "Encode hard and soft constraints.",
+          "The chair reviews the draft and resolves conflicts."
+        ],
+        "keyBlockers": [
+          "Room and faculty availability data (see gap)."
+        ],
+        "privacyNotes": [
+          "Use aggregate counts only. The scheduler does not need individual student records.",
+          "Faculty availability can reveal medical or family leave. Store only the constraint, never the reason."
+        ]
+      }
+    },
+    {
+      "id": "sol-scheduling-data-gap",
+      "label": "Room & Availability Data Scattered",
+      "type": "solution",
+      "parentId": "task-course-scheduling",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "data",
+        "facilities"
+      ],
+      "details": {
+        "description": "Room features and faculty constraints live in emails and memory, so no tool can schedule reliably.",
+        "implementationSteps": [
+          "Build a room inventory with features.",
+          "Collect faculty constraints through a form."
+        ],
+        "keyBlockers": [
+          "Facilities and the registrar own different pieces."
+        ]
+      }
+    },
+    {
+      "id": "sol-scheduling-calendar",
+      "label": "Scheduling Calendar & Priority Rules",
+      "type": "solution",
+      "parentId": "task-course-scheduling",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "process",
+        "timeline"
+      ],
+      "details": {
+        "description": "A published scheduling timeline and priority rules, such as required courses first and no conflicts within a cohort, reduce churn.",
+        "implementationSteps": [
+          "Publish the timeline.",
+          "Define conflict-free course pairs for each major.",
+          "Hold a cross-department conflict check."
+        ],
+        "keyBlockers": [
+          "Chairs working in isolation."
+        ]
+      }
+    },
+    {
+      "id": "dom-enrollment",
+      "label": "Enrollment Management",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-admissions",
+        "role-finaid"
+      ],
+      "summary": "Admissions, recruitment, and financial aid."
+    },
+    {
+      "id": "role-admissions",
+      "label": "Admissions Counselor",
+      "type": "role",
+      "parentId": "dom-enrollment",
+      "childrenIds": [
+        "task-transcript-intake",
+        "task-prospect-inquiries"
+      ],
+      "summary": "Recruits prospective students and evaluates applications."
+    },
+    {
+      "id": "task-transcript-intake",
+      "label": "Transfer Transcript Intake & Evaluation",
+      "type": "scenario",
+      "parentId": "role-admissions",
+      "childrenIds": [
+        "sol-transcript-extract",
+        "sol-transcript-webhook",
+        "sol-articulation-gap"
+      ],
+      "tags": [
+        "admissions",
+        "transfer"
+      ],
+      "details": {
+        "context": "Transfer applicants send transcripts from hundreds of institutions, as PDFs, paper scans, or electronic exchange.",
+        "problemStatement": "Manual keying of courses and grades creates a multi-week backlog at peak season, and admitted students enroll elsewhere."
+      }
+    },
+    {
+      "id": "sol-transcript-extract",
+      "label": "Transcript Document Extraction",
+      "type": "solution",
+      "parentId": "task-transcript-intake",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "idp",
+        "ocr",
+        "documents"
+      ],
+      "details": {
+        "description": "Document AI extracts institution, courses, credits, and grades into a structured draft that staff verify instead of typing.",
+        "pattern": "Intelligent document processing with confidence-based review.",
+        "implementationSteps": [
+          "Label 200 historical transcripts across top feeder schools.",
+          "Measure extraction accuracy per field.",
+          "Auto-accept only high-confidence fields and queue the rest for review."
+        ],
+        "keyBlockers": [
+          "Low-quality scans reduce accuracy."
+        ],
+        "privacyNotes": [
+          "Transcripts contain dates of birth and sometimes SSNs. Configure extraction to drop fields you do not need.",
+          "FERPA covers records once the student enrolls. Protect applicant records to the same standard from day one, since they become education records, and state privacy laws, or GDPR for EU applicants, may already apply.",
+          "A vendor processing education records must qualify under FERPA’s school-official exception: it performs an institutional function, stays under the institution’s direct control, and uses records only for that purpose (34 CFR 99.31(a)(1)).",
+          "The contract must prohibit the vendor from using student data to train or improve its models, and must require deletion when the contract ends."
+        ]
+      }
+    },
+    {
+      "id": "sol-transcript-webhook",
+      "label": "Electronic Transcript Integration",
+      "type": "solution",
+      "parentId": "task-transcript-intake",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "webhook",
+        "sis",
+        "integration"
+      ],
+      "details": {
+        "description": "Transcripts arriving through an electronic exchange network go straight into the SIS by webhook, with no manual handling.",
+        "implementationSteps": [
+          "Enable the exchange provider’s delivery webhook.",
+          "Map the standard transcript schema to SIS fields.",
+          "Alert staff only on mapping failures."
+        ],
+        "keyBlockers": [
+          "Only some sending institutions use electronic exchange."
+        ],
+        "privacyNotes": [
+          "Use authenticated, encrypted endpoints. Do not route transcripts through shared inboxes.",
+          "Error alerts should reference an application ID, not course or grade detail."
+        ]
+      }
+    },
+    {
+      "id": "sol-articulation-gap",
+      "label": "Missing Course Equivalency Database",
+      "type": "solution",
+      "parentId": "task-transcript-intake",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "public",
+      "tags": [
+        "articulation",
+        "transfer"
+      ],
+      "details": {
+        "description": "Even perfectly extracted courses cannot be evaluated automatically, because equivalencies live in evaluators’ heads and old spreadsheets.",
+        "implementationSteps": [
+          "Consolidate past equivalency decisions into one table.",
+          "Assign a faculty owner for each subject.",
+          "Publish equivalencies so students can check them themselves."
+        ],
+        "keyBlockers": [
+          "Faculty sign-off is slow.",
+          "Past decisions are inconsistent."
+        ],
+        "privacyNotes": [
+          "Course-to-course equivalencies are not student data and can be published."
+        ]
+      }
+    },
+    {
+      "id": "task-prospect-inquiries",
+      "label": "Prospective Student Inquiries",
+      "type": "scenario",
+      "parentId": "role-admissions",
+      "childrenIds": [
+        "sol-prospect-chat",
+        "sol-inquiry-routing"
+      ],
+      "tags": [
+        "recruitment",
+        "inquiries"
+      ],
+      "details": {
+        "context": "Admissions receives thousands of repetitive questions about deadlines, programs, costs, and visits by email, chat, and phone, peaking at night and on weekends.",
+        "problemStatement": "Slow responses lose prospects, and counselors have no time for applicants who need real guidance."
+      }
+    },
+    {
+      "id": "sol-prospect-chat",
+      "label": "Public-Information Admissions Assistant",
+      "type": "solution",
+      "parentId": "task-prospect-inquiries",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "chatbot",
+        "rag",
+        "recruitment"
+      ],
+      "details": {
+        "description": "A website assistant answers only from published admissions pages and hands off to a counselor for anything application-specific.",
+        "implementationSteps": [
+          "Index public admissions, cost, and program pages.",
+          "Refuse application-status questions and redirect them to the authenticated portal.",
+          "Review unanswered questions weekly and fix the website."
+        ],
+        "keyBlockers": [
+          "Website content must be accurate first."
+        ],
+        "privacyNotes": [
+          "Don’t ask for or store personal details in anonymous chat. Status checks belong behind portal login.",
+          "Publish a chat privacy notice. Prospects may be minors or EU residents, where GDPR applies."
+        ]
+      }
+    },
+    {
+      "id": "sol-inquiry-routing",
+      "label": "CRM Inquiry Routing",
+      "type": "solution",
+      "parentId": "task-prospect-inquiries",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "crm",
+        "routing"
+      ],
+      "details": {
+        "description": "Inquiries are auto-assigned to the territory counselor with templated first responses and follow-up tasks.",
+        "implementationSteps": [
+          "Define routing rules by territory and program.",
+          "Create response templates.",
+          "Track time to first response."
+        ],
+        "keyBlockers": [
+          "CRM data hygiene."
+        ],
+        "privacyNotes": [
+          "Prospect data is personal information even though FERPA doesn’t apply yet. Honor unsubscribe requests and state privacy rights.",
+          "Text messaging requires documented prior consent under the TCPA."
+        ]
+      }
+    },
+    {
+      "id": "role-finaid",
+      "label": "Financial Aid Counselor",
+      "type": "role",
+      "parentId": "dom-enrollment",
+      "childrenIds": [
+        "task-aid-verification"
+      ],
+      "summary": "Packages aid and completes federal verification."
+    },
+    {
+      "id": "task-aid-verification",
+      "label": "FAFSA Verification Document Processing",
+      "type": "scenario",
+      "parentId": "role-finaid",
+      "childrenIds": [
+        "sol-verification-reminders",
+        "sol-verification-ai",
+        "sol-glba-gap"
+      ],
+      "tags": [
+        "financial aid",
+        "verification"
+      ],
+      "details": {
+        "context": "Students selected for verification upload tax documents, household forms, and identity documents. Staff chase missing items and review each file by hand.",
+        "problemStatement": "Verification backlogs delay aid disbursement, and students, disproportionately first-generation and low-income, stop out before aid arrives."
+      }
+    },
+    {
+      "id": "sol-verification-reminders",
+      "label": "Document Checklist & Reminders",
+      "type": "solution",
+      "parentId": "task-aid-verification",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "portal",
+        "reminders"
+      ],
+      "details": {
+        "description": "The student portal shows a live checklist of outstanding documents and sends automated reminders until the file is complete.",
+        "implementationSteps": [
+          "Sync verification requirements from the aid system to the portal.",
+          "Schedule reminders by email and portal notification.",
+          "Escalate files still incomplete after 14 days to a counselor."
+        ],
+        "keyBlockers": [
+          "Aid system integration."
+        ],
+        "privacyNotes": [
+          "Reminders say only “you have items outstanding, log in to view.” No dollar amounts, tax details, or document names in email or SMS.",
+          "Financial aid data is covered by the GLBA Safeguards Rule as well as FERPA."
+        ]
+      }
+    },
+    {
+      "id": "sol-verification-ai",
+      "label": "AI Document Classification (Constrained)",
+      "type": "solution",
+      "parentId": "task-aid-verification",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "glba",
+        "fti",
+        "documents"
+      ],
+      "details": {
+        "description": "Classify uploaded documents by type and flag obvious mismatches so counselors review only the exceptions. It never decides eligibility.",
+        "implementationSteps": [
+          "Run in the aid vendor’s approved environment or a private deployment.",
+          "Classify document type and completeness only.",
+          "Counselors keep all verification decisions."
+        ],
+        "keyBlockers": [
+          "Few vendors meet GLBA and federal data requirements.",
+          "The error cost is high: wrong flags delay aid."
+        ],
+        "privacyNotes": [
+          "Federal tax information (FTI) received through the FAFSA direct data exchange is subject to IRS redisclosure restrictions. It must never go to AI tools or systems not approved for FTI.",
+          "Student-uploaded tax and identity documents are still GLBA-protected. They require encryption, MFA, and a vendor risk assessment.",
+          "Mask SSNs everywhere a full SSN isn’t operationally required."
+        ]
+      }
+    },
+    {
+      "id": "sol-glba-gap",
+      "label": "GLBA Safeguards Program Gaps",
+      "type": "solution",
+      "parentId": "task-aid-verification",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "glba",
+        "compliance",
+        "security"
+      ],
+      "details": {
+        "description": "The FTC Safeguards Rule requires a qualified individual, a written risk assessment, MFA, encryption, and vendor oversight. Gaps here block any new aid tooling.",
+        "implementationSteps": [
+          "Name the qualified individual.",
+          "Complete a written risk assessment covering aid systems.",
+          "Enforce MFA and encryption for anyone accessing aid data.",
+          "Add safeguards language to vendor contracts."
+        ],
+        "keyBlockers": [
+          "Shared responsibility between aid, IT, and compliance."
+        ],
+        "privacyNotes": [
+          "Title IV participation obligates the institution to comply with GLBA safeguards. Findings can surface in federal audits."
+        ]
+      }
+    },
+    {
+      "id": "dom-student-success",
+      "label": "Advising & Student Success",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-advisor",
+        "role-success-coach"
+      ],
+      "summary": "Academic advising, coaching, and retention."
+    },
+    {
+      "id": "role-advisor",
+      "label": "Academic Advisor",
+      "type": "role",
+      "parentId": "dom-student-success",
+      "childrenIds": [
+        "task-degree-planning"
+      ],
+      "summary": "Guides students through degree requirements and course selection."
+    },
+    {
+      "id": "task-degree-planning",
+      "label": "Degree Requirement Questions",
+      "type": "scenario",
+      "parentId": "role-advisor",
+      "childrenIds": [
+        "sol-advising-assistant",
+        "sol-catalog-gap",
+        "sol-advising-notes"
+      ],
+      "tags": [
+        "advising",
+        "degree planning"
+      ],
+      "details": {
+        "context": "Advisors field hundreds of repetitive questions each term about prerequisites, transfer credit, and graduation requirements, all governed by catalog rules that change yearly.",
+        "problemStatement": "Students wait days for routine answers, and advisors have little time left for students at risk of leaving."
+      }
+    },
+    {
+      "id": "sol-advising-assistant",
+      "label": "Policy-Grounded Advising Assistant",
+      "type": "solution",
+      "parentId": "task-degree-planning",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "chatbot",
+        "rag",
+        "advising"
+      ],
+      "details": {
+        "description": "A student-facing assistant answers requirement questions from the catalog year the student entered under, and escalates anything ambiguous to a human advisor.",
+        "pattern": "RAG over versioned policy documents, with escalation.",
+        "signals": [
+          "Most questions are answerable from the published catalog.",
+          "Advisors keep a personal FAQ document."
+        ],
+        "implementationSteps": [
+          "Index catalogs by year and program with explicit version metadata.",
+          "Launch in general-questions mode with no student records.",
+          "Later, add authenticated, degree-audit-aware answers once privacy review is complete.",
+          "Review a weekly sample of answers with advising leadership."
+        ],
+        "keyBlockers": [
+          "Wrong answers about graduation carry real harm. Agree accuracy thresholds first."
+        ],
+        "privacyNotes": [
+          "Phase 1, catalog only, uses public data.",
+          "Phase 2 reads the student’s degree audit. That requires SSO, access to the logged-in student’s own record only, a school-official agreement with the vendor, and no retention of conversations beyond what advising needs.",
+          "The contract must prohibit the vendor from using student data to train or improve its models, and must require deletion when the contract ends."
+        ]
+      }
+    },
+    {
+      "id": "sol-catalog-gap",
+      "label": "Catalog Rules Not Machine-Readable",
+      "type": "solution",
+      "parentId": "task-degree-planning",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "public",
+      "tags": [
+        "data quality",
+        "curriculum"
+      ],
+      "details": {
+        "description": "Degree rules exist as prose in PDFs and inconsistent degree-audit configuration, so no tool can reason over them reliably.",
+        "signals": [
+          "The degree audit and the catalog disagree.",
+          "Exceptions are tracked by email."
+        ],
+        "implementationSteps": [
+          "Pick one program and encode its rules as structured requirements.",
+          "Reconcile them with the degree audit.",
+          "Make the registrar the owner of the structured version."
+        ],
+        "keyBlockers": [
+          "Registrar capacity.",
+          "Curriculum changes land late in the cycle."
+        ]
+      }
+    },
+    {
+      "id": "sol-advising-notes",
+      "label": "Standard Advising Notes Practice",
+      "type": "solution",
+      "parentId": "task-degree-planning",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "crm",
+        "sop"
+      ],
+      "details": {
+        "description": "A shared note structure lets any advisor pick up a student’s history, and repeated questions become FAQ content.",
+        "implementationSteps": [
+          "Define required fields: topic, outcome, follow-up.",
+          "Configure the CRM note template.",
+          "Review top topics monthly and publish FAQ updates."
+        ],
+        "keyBlockers": [
+          "Advisors resist extra typing unless it saves time elsewhere."
+        ],
+        "privacyNotes": [
+          "Notes in a shared advising system are education records, and students have the right to inspect them. The “sole possession” exclusion covers only private memory aids that are never shared.",
+          "Write factual, professional notes. Don’t record health or mental-health details; refer the student and note only that a referral happened."
+        ]
+      }
+    },
+    {
+      "id": "role-success-coach",
+      "label": "Student Success Coach",
+      "type": "role",
+      "parentId": "dom-student-success",
+      "childrenIds": [
+        "task-early-alert"
+      ],
+      "summary": "Proactively reaches students who show signs of struggling."
+    },
+    {
+      "id": "task-early-alert",
+      "label": "Identifying At-Risk Students",
+      "type": "scenario",
+      "parentId": "role-success-coach",
+      "childrenIds": [
+        "sol-risk-model",
+        "sol-inactivity-alerts",
+        "sol-referral-loop",
+        "sol-success-data-gap"
+      ],
+      "tags": [
+        "retention",
+        "early alert"
+      ],
+      "details": {
+        "context": "Warning signs such as LMS inactivity, missed assignments, holds, and midterm grades are spread across systems. Coaches learn about struggling students after withdrawal deadlines pass.",
+        "problemStatement": "Outreach comes too late to change outcomes, and caseloads are too large to monitor manually."
+      }
+    },
+    {
+      "id": "sol-risk-model",
+      "label": "Predictive Retention Risk Model",
+      "type": "solution",
+      "parentId": "task-early-alert",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "predictive analytics",
+        "retention",
+        "bias"
+      ],
+      "details": {
+        "description": "A model scores retention risk from academic engagement signals to prioritize coach outreach. It prioritizes a human conversation; it does not label students.",
+        "implementationSteps": [
+          "Use behavioral and academic signals, and exclude protected characteristics as features.",
+          "Audit for disparate impact across demographic groups before launch and each term.",
+          "Show coaches reasons, not just a score.",
+          "Never use scores for admissions, aid, or discipline decisions."
+        ],
+        "keyBlockers": [
+          "Model bias and trust.",
+          "Needs integrated data (see gap)."
+        ],
+        "privacyNotes": [
+          "Scores are derived education records. Restrict them to coaches and advisors with legitimate educational interest.",
+          "Be transparent: tell students what data informs outreach.",
+          "Limit access to staff with a legitimate educational interest; role-based access should mirror the SIS security model."
+        ]
+      }
+    },
+    {
+      "id": "sol-inactivity-alerts",
+      "label": "LMS Inactivity Alerts",
+      "type": "solution",
+      "parentId": "task-early-alert",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "early alert",
+        "lms"
+      ],
+      "details": {
+        "description": "A rule-based alert fires when a student has not logged in to any course for 7 days, or misses two assignments, and creates an outreach task for their coach.",
+        "implementationSteps": [
+          "Define rules with faculty input.",
+          "Integrate LMS activity with the success CRM.",
+          "Track outreach and outcomes."
+        ],
+        "keyBlockers": [
+          "Online and in-person courses use the LMS differently."
+        ],
+        "privacyNotes": [
+          "Alerts go only to the assigned coach or advisor.",
+          "Outreach messages shouldn’t list specific grades in email subject lines or previews."
+        ]
+      }
+    },
+    {
+      "id": "sol-referral-loop",
+      "label": "Closed-Loop Referral Ownership",
+      "type": "solution",
+      "parentId": "task-early-alert",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "process",
+        "raci"
+      ],
+      "details": {
+        "description": "Every alert has one owner, a response deadline, and a documented close-out, so no student falls between offices.",
+        "implementationSteps": [
+          "Define alert types and owners.",
+          "Set response SLAs.",
+          "Report closure rates monthly."
+        ],
+        "keyBlockers": [
+          "Many offices, no single leader."
+        ],
+        "privacyNotes": [
+          "Referrals to counseling or disability services should say only “referred.” Clinical or disability details stay in those offices’ separate systems."
+        ]
+      }
+    },
+    {
+      "id": "sol-success-data-gap",
+      "label": "Signals Siloed Across Systems",
+      "type": "solution",
+      "parentId": "task-early-alert",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "integration",
+        "governance"
+      ],
+      "details": {
+        "description": "LMS, SIS, and advising CRM data are not integrated, and there is no governance agreement on who may see combined profiles.",
+        "implementationSteps": [
+          "Draft a data-sharing agreement with defined roles.",
+          "Build an integration with role-based views.",
+          "Document the data inventory."
+        ],
+        "keyBlockers": [
+          "Data governance council approval."
+        ],
+        "privacyNotes": [
+          "Combining data creates a more sensitive profile than any single source. Apply data minimization and log access."
+        ]
+      }
+    },
+    {
+      "id": "dom-registrar",
+      "label": "Registrar & Records",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-records-specialist"
+      ],
+      "summary": "Official academic records, enrollment verification, and FERPA stewardship."
+    },
+    {
+      "id": "role-records-specialist",
+      "label": "Records Specialist",
+      "type": "role",
+      "parentId": "dom-registrar",
+      "childrenIds": [
+        "task-records-requests"
+      ],
+      "summary": "Handles transcripts, verifications, and records requests."
+    },
+    {
+      "id": "task-records-requests",
+      "label": "Verification & Records Requests",
+      "type": "scenario",
+      "parentId": "role-records-specialist",
+      "childrenIds": [
+        "sol-self-service-verify",
+        "sol-release-sop",
+        "sol-request-triage-ai"
+      ],
+      "tags": [
+        "records",
+        "ferpa"
+      ],
+      "details": {
+        "context": "The office receives a steady stream of enrollment verifications, transcript orders, and records questions from students, employers, landlords, and parents.",
+        "problemStatement": "Manual handling is slow, and every request is a chance to disclose something the requester shouldn’t receive."
+      }
+    },
+    {
+      "id": "sol-self-service-verify",
+      "label": "Self-Service Enrollment Verification",
+      "type": "solution",
+      "parentId": "task-records-requests",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "self-service",
+        "verification"
+      ],
+      "details": {
+        "description": "Students generate official enrollment verifications themselves, and third parties verify through a clearinghouse or portal, with no staff handling.",
+        "implementationSteps": [
+          "Enable student self-service in the SIS or clearinghouse.",
+          "Publish instructions for employers and insurers.",
+          "Retire the manual request form."
+        ],
+        "keyBlockers": [
+          "Some requesters insist on custom letters."
+        ],
+        "privacyNotes": [
+          "Automated disclosures must honor a student’s confidentiality (directory opt-out) flag.",
+          "Keep a record of non-consensual disclosures to third parties as required by 34 CFR 99.32."
+        ]
+      }
+    },
+    {
+      "id": "sol-release-sop",
+      "label": "FERPA Release & Identity Verification SOP",
+      "type": "solution",
+      "parentId": "task-records-requests",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "ferpa",
+        "sop",
+        "training"
+      ],
+      "details": {
+        "description": "A standard script and checklist for every records request: verify identity, check for a consent release or applicable exception, check confidentiality flags, and log the disclosure.",
+        "implementationSteps": [
+          "Write the script for phone, email, and counter requests.",
+          "Use an online FERPA consent-release form students can manage.",
+          "Train staff yearly and require FERPA training before system access."
+        ],
+        "keyBlockers": [
+          "High staff turnover in front-line roles."
+        ],
+        "privacyNotes": [
+          "Parents have no automatic right to a college student’s records. Disclose only with the student’s written consent, or with documentation that the student is a tax dependent.",
+          "Treat urgency and authority claims from callers as red flags for social engineering."
+        ]
+      }
+    },
+    {
+      "id": "sol-request-triage-ai",
+      "label": "Request Email Triage",
+      "type": "solution",
+      "parentId": "task-records-requests",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "classification",
+        "email"
+      ],
+      "details": {
+        "description": "Classify incoming emails by request type and route them to the right queue with a suggested template. Staff review and send every reply.",
+        "implementationSteps": [
+          "Label a sample of past requests.",
+          "Classify into queues only. Never auto-send.",
+          "Measure routing accuracy."
+        ],
+        "keyBlockers": [
+          "Emails contain student identifiers and sometimes documents."
+        ],
+        "privacyNotes": [
+          "Run inside the institution’s email or ticketing platform under its existing data agreement.",
+          "Automated replies must never include record content. Identity must be verified first."
+        ]
+      }
+    },
+    {
+      "id": "dom-student-affairs",
+      "label": "Student Affairs & Wellbeing",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-accessibility-coord",
+        "role-counseling-coord"
+      ],
+      "summary": "Disability services, counseling, and student wellbeing."
+    },
+    {
+      "id": "role-accessibility-coord",
+      "label": "Accessibility Services Coordinator",
+      "type": "role",
+      "parentId": "dom-student-affairs",
+      "childrenIds": [
+        "task-accommodation-letters"
+      ],
+      "summary": "Determines and coordinates academic accommodations."
+    },
+    {
+      "id": "task-accommodation-letters",
+      "label": "Accommodation Letter Workflow",
+      "type": "scenario",
+      "parentId": "role-accessibility-coord",
+      "childrenIds": [
+        "sol-accommodation-letters",
+        "sol-accommodation-ai-hold",
+        "sol-disability-docs-gap"
+      ],
+      "tags": [
+        "accessibility",
+        "disability services"
+      ],
+      "details": {
+        "context": "Each term, coordinators generate accommodation letters for every registered student and every course, then answer faculty questions about implementing them.",
+        "problemStatement": "Letters arrive late in the term, and documentation is handled through email and shared drives."
+      }
+    },
+    {
+      "id": "sol-accommodation-letters",
+      "label": "Automated Accommodation Letters",
+      "type": "solution",
+      "parentId": "task-accommodation-letters",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "accommodations",
+        "ada",
+        "section 504"
+      ],
+      "details": {
+        "description": "An accessibility management system generates course-specific letters from approved accommodations as soon as the student requests them, and delivers them to instructors through a secure portal.",
+        "implementationSteps": [
+          "Adopt an accessibility management system that integrates with the SIS.",
+          "Let students request letters per course each term.",
+          "Have faculty acknowledge receipt in the portal."
+        ],
+        "keyBlockers": [
+          "Procurement and SIS integration."
+        ],
+        "privacyNotes": [
+          "Letters list accommodations only. Never include a diagnosis or disability type.",
+          "Faculty receive only what they need to implement the accommodation."
+        ]
+      }
+    },
+    {
+      "id": "sol-accommodation-ai-hold",
+      "label": "AI Summaries of Medical Documentation",
+      "type": "solution",
+      "parentId": "task-accommodation-letters",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "blocked",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "not recommended",
+        "health data"
+      ],
+      "details": {
+        "description": "A tempting idea: summarize clinicians’ documentation to speed eligibility review. The diagnosis: not appropriate yet. The data is highly sensitive, the decisions are individualized, and the time saved is small compared to the risk.",
+        "pattern": "Diagnosis: don’t automate. Fix the workflow first.",
+        "implementationSteps": [
+          "Revisit only after secure document storage exists (see gap).",
+          "If ever piloted: private deployment only, the coordinator makes every determination, and students are informed."
+        ],
+        "keyBlockers": [
+          "Health information in disability files is among the most sensitive data the institution holds.",
+          "Eligibility decisions must be individualized under the ADA."
+        ],
+        "privacyNotes": [
+          "Disability documentation is an education record with heightened sensitivity. Some institutions also treat it under state health privacy laws.",
+          "Sending it to a general-purpose AI service is not acceptable."
+        ]
+      }
+    },
+    {
+      "id": "sol-disability-docs-gap",
+      "label": "Documentation in Email & Shared Drives",
+      "type": "solution",
+      "parentId": "task-accommodation-letters",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "blocked",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "records management",
+        "security"
+      ],
+      "details": {
+        "description": "Medical and psychological documentation is stored in inboxes and broadly shared folders, which blocks safe automation of anything else.",
+        "implementationSteps": [
+          "Move documentation into the access-controlled accessibility system.",
+          "Purge copies from email and drives.",
+          "Set a records retention schedule."
+        ],
+        "keyBlockers": [
+          "Historical files are scattered."
+        ],
+        "privacyNotes": [
+          "Access should be limited to accessibility services staff. Other offices, including advising and faculty, get only accommodation outcomes."
+        ]
+      }
+    },
+    {
+      "id": "role-counseling-coord",
+      "label": "Counseling Center Coordinator",
+      "type": "role",
+      "parentId": "dom-student-affairs",
+      "childrenIds": [
+        "task-counseling-access"
+      ],
+      "summary": "Manages intake and scheduling for student mental-health services."
+    },
+    {
+      "id": "task-counseling-access",
+      "label": "Counseling Appointment Demand",
+      "type": "scenario",
+      "parentId": "role-counseling-coord",
+      "childrenIds": [
+        "sol-counseling-scheduling",
+        "sol-stepped-care"
+      ],
+      "tags": [
+        "mental health",
+        "access"
+      ],
+      "details": {
+        "context": "Demand peaks around midterms and finals. Intake happens by phone, and waitlists live in spreadsheets.",
+        "problemStatement": "Students wait weeks for a first appointment, and urgent needs can be missed in the queue."
+      }
+    },
+    {
+      "id": "sol-counseling-scheduling",
+      "label": "Self-Scheduling with Triage Screening",
+      "type": "solution",
+      "parentId": "task-counseling-access",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "restricted",
+      "tags": [
+        "scheduling",
+        "mental health"
+      ],
+      "details": {
+        "description": "Students book initial consultations online after a brief screening. Any screening that indicates risk triggers an immediate same-day clinician callback instead of a booking.",
+        "implementationSteps": [
+          "Use the clinical EHR’s scheduling module.",
+          "Have clinicians define risk-screening rules.",
+          "Show crisis resources on every page."
+        ],
+        "keyBlockers": [
+          "Clinical leadership approval of the screening rules."
+        ],
+        "privacyNotes": [
+          "Counseling records live in a separate clinical system, never the SIS or advising CRM.",
+          "Reminders shouldn’t reveal the service. Use “You have an appointment at 2pm,” not “Counseling Center appointment,” in SMS and email.",
+          "Treatment records are excluded from FERPA’s education-records definition only while used solely for treatment. Once shared elsewhere they become education records, so don’t share them."
+        ]
+      }
+    },
+    {
+      "id": "sol-stepped-care",
+      "label": "Stepped-Care Model",
+      "type": "solution",
+      "parentId": "task-counseling-access",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "stepped care",
+        "capacity"
+      ],
+      "details": {
+        "description": "Match students to the right level of support (workshops, groups, single sessions, ongoing therapy) instead of routing everyone to weekly individual therapy.",
+        "implementationSteps": [
+          "Define care levels and criteria.",
+          "Train intake staff.",
+          "Track wait times by level."
+        ],
+        "keyBlockers": [
+          "Culture change for clinicians and students."
+        ]
+      }
+    },
+    {
+      "id": "dom-it-data",
+      "label": "IT, Data & Institutional Research",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-institutional-researcher",
+        "role-privacy-officer"
+      ],
+      "summary": "Enterprise systems, security, privacy, and institutional reporting."
+    },
+    {
+      "id": "role-institutional-researcher",
+      "label": "Institutional Research Analyst",
+      "type": "role",
+      "parentId": "dom-it-data",
+      "childrenIds": [
+        "task-ipeds-reporting"
+      ],
+      "summary": "Produces official statistics and analytics about students and outcomes."
+    },
+    {
+      "id": "task-ipeds-reporting",
+      "label": "Federal & State Compliance Reporting",
+      "type": "scenario",
+      "parentId": "role-institutional-researcher",
+      "childrenIds": [
+        "sol-ir-pipelines",
+        "sol-census-definition-gap",
+        "sol-data-stewardship"
+      ],
+      "tags": [
+        "reporting",
+        "ipeds"
+      ],
+      "details": {
+        "context": "IR produces IPEDS, state, and accreditation reports from SIS snapshots using a patchwork of queries and spreadsheets maintained by one or two people.",
+        "problemStatement": "Reports are hard to reproduce, numbers shift between years, and knowledge walks out the door with staff."
+      }
+    },
+    {
+      "id": "sol-ir-pipelines",
+      "label": "Reproducible Reporting Pipelines",
+      "type": "solution",
+      "parentId": "task-ipeds-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "ipeds",
+        "data pipelines"
+      ],
+      "details": {
+        "description": "Version-controlled queries run against frozen census snapshots, with automated checks against the prior year.",
+        "implementationSteps": [
+          "Freeze census-date snapshots.",
+          "Move queries into version control.",
+          "Add automated year-over-year variance checks."
+        ],
+        "keyBlockers": [
+          "Analyst time to refactor legacy queries."
+        ],
+        "privacyNotes": [
+          "Snapshots contain unit-level education records. Restrict warehouse access to IR.",
+          "Published outputs must be aggregate, with small-cell suppression (for example, hide counts under 10) so individuals can’t be re-identified."
+        ]
+      }
+    },
+    {
+      "id": "sol-census-definition-gap",
+      "label": "Inconsistent Census Definitions",
+      "type": "solution",
+      "parentId": "task-ipeds-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "data dictionary",
+        "governance"
+      ],
+      "details": {
+        "description": "Offices define “enrolled,” “full-time,” and “first-generation” differently, so numbers never reconcile.",
+        "implementationSteps": [
+          "Publish a data dictionary.",
+          "Get sign-off from data stewards.",
+          "Tag every report with the definitions it uses."
+        ],
+        "keyBlockers": [
+          "Politically sensitive numbers."
+        ]
+      }
+    },
+    {
+      "id": "sol-data-stewardship",
+      "label": "Data Stewardship Council",
+      "type": "solution",
+      "parentId": "task-ipeds-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "governance"
+      ],
+      "details": {
+        "description": "Named data stewards per domain approve definitions, access, and data-sharing requests.",
+        "implementationSteps": [
+          "Charter the council.",
+          "Name stewards per domain.",
+          "Create an access request workflow."
+        ],
+        "keyBlockers": [
+          "Executive sponsorship."
+        ]
+      }
+    },
+    {
+      "id": "role-privacy-officer",
+      "label": "IT Security & Privacy Officer",
+      "type": "role",
+      "parentId": "dom-it-data",
+      "childrenIds": [
+        "task-ai-tool-vetting"
+      ],
+      "summary": "Protects institutional data and reviews technology for risk."
+    },
+    {
+      "id": "task-ai-tool-vetting",
+      "label": "Vetting AI Tool Requests",
+      "type": "scenario",
+      "parentId": "role-privacy-officer",
+      "childrenIds": [
+        "sol-data-classification",
+        "sol-vendor-terms-gap",
+        "sol-review-intake"
+      ],
+      "tags": [
+        "ai governance",
+        "vendor review"
+      ],
+      "details": {
+        "context": "Faculty and staff request dozens of new AI tools a term, from writing assistants to meeting transcription, often after they have already started using them.",
+        "problemStatement": "Reviews are ad hoc and slow, so people bypass them and student data ends up in unvetted services."
+      }
+    },
+    {
+      "id": "sol-data-classification",
+      "label": "Data Classification & Approved-Tools List",
+      "type": "solution",
+      "parentId": "task-ai-tool-vetting",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "data classification",
+        "governance"
+      ],
+      "details": {
+        "description": "Publish a simple data classification (public, internal, FERPA, restricted) and a list showing which tools are approved for which class.",
+        "implementationSteps": [
+          "Adopt four data classes with examples.",
+          "Map approved tools to the highest class each may handle.",
+          "Publish it where faculty will actually see it, including the LMS and the faculty portal."
+        ],
+        "keyBlockers": [
+          "Keeping the list current."
+        ],
+        "privacyNotes": [
+          "This is the backbone that makes every other outcome in this atlas safe to act on."
+        ]
+      }
+    },
+    {
+      "id": "sol-vendor-terms-gap",
+      "label": "Contracts Lack Student-Data Terms",
+      "type": "solution",
+      "parentId": "task-ai-tool-vetting",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "blocked",
+      "dataSensitivity": "ferpa",
+      "tags": [
+        "contracts",
+        "vendor risk"
+      ],
+      "details": {
+        "description": "Standard vendor contracts and click-through terms don’t designate the vendor as a school official, restrict data use, or prohibit model training.",
+        "implementationSteps": [
+          "Create a student-data addendum template.",
+          "Require it for any tool touching FERPA-class data.",
+          "Include breach notification, deletion, and subprocessor disclosure."
+        ],
+        "keyBlockers": [
+          "Large vendors resist custom terms.",
+          "Click-through consumer terms can’t be negotiated."
+        ],
+        "privacyNotes": [
+          "A vendor processing education records must qualify under FERPA’s school-official exception: it performs an institutional function, stays under the institution’s direct control, and uses records only for that purpose (34 CFR 99.31(a)(1)).",
+          "The contract must prohibit the vendor from using student data to train or improve its models, and must require deletion when the contract ends.",
+          "Individual employees generally can’t accept click-through terms that bind the institution to share student data."
+        ]
+      }
+    },
+    {
+      "id": "sol-review-intake",
+      "label": "Tool Review Intake & SLA",
+      "type": "solution",
+      "parentId": "task-ai-tool-vetting",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "workflow",
+        "intake"
+      ],
+      "details": {
+        "description": "A single intake form routes requests to privacy, security, accessibility, and procurement reviewers in parallel, with a published turnaround time.",
+        "implementationSteps": [
+          "Build the form, asking which data class the tool will touch.",
+          "Auto-route by data class, with light review for public data.",
+          "Publish decisions to the approved-tools list."
+        ],
+        "keyBlockers": [
+          "Reviewer capacity."
+        ]
+      }
+    },
+    {
+      "id": "dom-library",
+      "label": "Library",
+      "type": "domain",
+      "parentId": "ind-highered",
+      "childrenIds": [
+        "role-librarian"
+      ],
+      "summary": "Research help, instruction, and collections."
+    },
+    {
+      "id": "role-librarian",
+      "label": "Reference & Instruction Librarian",
+      "type": "role",
+      "parentId": "dom-library",
+      "childrenIds": [
+        "task-research-help"
+      ],
+      "summary": "Helps students and faculty find and evaluate sources."
+    },
+    {
+      "id": "task-research-help",
+      "label": "After-Hours Research Help",
+      "type": "scenario",
+      "parentId": "role-librarian",
+      "childrenIds": [
+        "sol-library-assistant",
+        "sol-chat-coverage"
+      ],
+      "tags": [
+        "library",
+        "research help"
+      ],
+      "details": {
+        "context": "Students do most of their research at night, while reference desk hours end in the early evening.",
+        "problemStatement": "Students give up or rely on low-quality sources when help isn’t available."
+      }
+    },
+    {
+      "id": "sol-library-assistant",
+      "label": "Catalog-Grounded Research Assistant",
+      "type": "solution",
+      "parentId": "task-research-help",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "library",
+        "rag",
+        "information literacy"
+      ],
+      "details": {
+        "description": "An assistant helps students form search strategies and finds items in the library catalog and databases, with a handoff to a librarian.",
+        "implementationSteps": [
+          "Ground it in the discovery layer and research guides.",
+          "Teach search strategy rather than just returning answers.",
+          "Offer a “talk to a librarian” handoff."
+        ],
+        "keyBlockers": [
+          "Database vendor terms for AI access."
+        ],
+        "privacyNotes": [
+          "Library patron records and search histories are confidential under most state library laws, and may also be education records. Don’t tie chat logs to student identity, and set short retention.",
+          "Don’t allow the vendor to use queries for profiling or model training."
+        ]
+      }
+    },
+    {
+      "id": "sol-chat-coverage",
+      "label": "Shared Consortium Chat Coverage",
+      "type": "solution",
+      "parentId": "task-research-help",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "collaboration"
+      ],
+      "details": {
+        "description": "Join a cooperative chat service where librarians across institutions staff overnight shifts.",
+        "implementationSteps": [
+          "Join the consortium service.",
+          "Contribute staffing hours.",
+          "Share local FAQs with partner librarians."
+        ],
+        "keyBlockers": [
+          "Local knowledge gaps among partner librarians."
+        ],
+        "privacyNotes": [
+          "Confirm the consortium’s chat transcript retention and privacy terms match local policy."
+        ]
+      }
+    }
+  ]
+}

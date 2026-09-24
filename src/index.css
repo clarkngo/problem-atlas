@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #020617;
+    color: #e2e8f0;
+  }
+}
+
+/* Canvas */
+.react-flow {
+  --xy-background-color: transparent;
+}
+
+/* Glide nodes into their new layout positions, but never while dragging. */
+.react-flow__node:not(.dragging) {
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.atlas-edge path.react-flow__edge-path {
+  stroke: #cbd5e1;
+  stroke-width: 1.5;
+}
+.atlas-edge-active path.react-flow__edge-path {
+  stroke: #6366f1;
+  stroke-width: 2.5;
+}
+@media (prefers-color-scheme: dark) {
+  .atlas-edge path.react-flow__edge-path {
+    stroke: #334155;
+  }
+  .atlas-edge-active path.react-flow__edge-path {
+    stroke: #818cf8;
+  }
+}
+
+@keyframes drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .react-flow__node,
+  .react-flow__edge-path,
+  aside {
+    transition: none !important;
+    animation: none !important;
+  }
+}
