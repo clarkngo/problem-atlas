@@ -1,4 +1,154 @@
 {
+  "regulations": {
+    "FERPA": {
+      "name": "Family Educational Rights and Privacy Act",
+      "summary": "Protects personally identifiable information in student education records (34 CFR Part 99). Vendors may access records only under an exception such as “school official,” under the institution’s direct control."
+    },
+    "GLBA": {
+      "name": "Gramm-Leach-Bliley Act Safeguards Rule",
+      "summary": "Requires a written information-security program (risk assessment, MFA, encryption, vendor oversight) for customer financial information, including student financial aid data."
+    },
+    "IRS FTI": {
+      "name": "Federal Tax Information",
+      "summary": "Tax data received from the IRS (for example through the FAFSA direct data exchange) is subject to strict redisclosure limits under Internal Revenue Code §6103."
+    },
+    "ADA/504": {
+      "name": "ADA and Section 504",
+      "summary": "Disability-rights laws requiring reasonable accommodations. Disability and medical documentation must be kept confidential and separate from other records."
+    },
+    "ADA Title II": {
+      "name": "ADA Title II web accessibility rule",
+      "summary": "A 2024 DOJ rule adopts WCAG 2.1 AA as the accessibility standard for the web content and course materials of state and local government entities, including public colleges."
+    },
+    "Common Rule": {
+      "name": "Common Rule (45 CFR 46)",
+      "summary": "Federal protections for human research subjects: IRB review, informed consent, and safeguards for identifiable data."
+    },
+    "GDPR": {
+      "name": "EU General Data Protection Regulation",
+      "summary": "Applies to personal data of people in the EU/EEA, including international students, applicants, and seafarers: lawful basis, data minimization, and processor agreements."
+    },
+    "TCPA": {
+      "name": "Telephone Consumer Protection Act",
+      "summary": "Requires prior consent for automated or prerecorded calls and text messages."
+    },
+    "Library Records": {
+      "name": "State library confidentiality laws",
+      "summary": "Most US states make library patron records, including searches and borrowing history, confidential."
+    },
+    "HIPAA": {
+      "name": "HIPAA Privacy, Security & Breach Rules",
+      "summary": "Protect PHI held by covered entities and their business associates. Vendors handling PHI must sign a business associate agreement (BAA), and uses should be limited to the minimum necessary."
+    },
+    "42 CFR Part 2": {
+      "name": "Confidentiality of SUD Patient Records",
+      "summary": "Stricter-than-HIPAA protection for substance use disorder treatment records from federally assisted programs. Most disclosures need patient consent, and records can’t be used against the patient in legal proceedings without consent or a court order."
+    },
+    "Info Blocking": {
+      "name": "21st Century Cures Act information blocking",
+      "summary": "Providers must not unreasonably interfere with patients’ access to, or exchange of, their electronic health information."
+    },
+    "Section 1557": {
+      "name": "ACA Section 1557 nondiscrimination",
+      "summary": "A 2024 HHS rule requires covered health programs to identify and mitigate discrimination risk in patient care decision support tools, including algorithms."
+    },
+    "CMS-0057-F": {
+      "name": "CMS Interoperability & Prior Authorization Rule",
+      "summary": "Requires impacted payers (Medicare Advantage, Medicaid, CHIP, marketplace plans) to shorten prior authorization decisions and build prior authorization APIs, with most API requirements starting in 2027."
+    },
+    "Recording Consent": {
+      "name": "State recording-consent laws",
+      "summary": "Some states require every party to consent before a conversation is recorded."
+    },
+    "CJIS": {
+      "name": "FBI CJIS Security Policy",
+      "summary": "Governs access to criminal justice information (CJI): advanced authentication, encryption, personnel screening, audit logging, and a signed CJIS Security Addendum for any vendor with access."
+    },
+    "Public Records": {
+      "name": "State public records laws",
+      "summary": "Set deadlines for releasing government records, and define what must be withheld or redacted."
+    },
+    "VAWA": {
+      "name": "VAWA and victim-privacy laws",
+      "summary": "Violence Against Women Act confidentiality provisions and state laws protect identifying information about victims of domestic violence, sexual assault, and stalking."
+    },
+    "Juvenile Records": {
+      "name": "Juvenile record confidentiality",
+      "summary": "State laws restrict access to and release of records about juveniles."
+    },
+    "28 CFR Part 23": {
+      "name": "Criminal Intelligence Systems Operating Policies",
+      "summary": "For federally funded intelligence systems: information may be entered only on reasonable suspicion of criminal activity, and must be reviewed or purged within five years."
+    },
+    "Brady/Giglio": {
+      "name": "Brady and Giglio disclosure duties",
+      "summary": "Prosecutors must disclose evidence favorable to the defense, including information affecting officer credibility. Drafts and AI outputs can be discoverable."
+    },
+    "Fourth Amendment": {
+      "name": "Fourth Amendment",
+      "summary": "Protects against unreasonable searches. Review of seized digital data must stay within the scope of the warrant or consent."
+    },
+    "AI Report Laws": {
+      "name": "State AI-in-police-report laws",
+      "summary": "Some states now require police reports drafted with AI assistance to say so, and to retain the AI-generated first draft."
+    },
+    "Civil Rights": {
+      "name": "Civil rights law",
+      "summary": "Federal and state civil rights laws prohibit discriminatory policing. Tools that concentrate enforcement on protected groups create legal and community-trust risk."
+    },
+    "Surveillance Ordinances": {
+      "name": "Local surveillance-technology ordinances",
+      "summary": "In a number of cities, police must get council approval, publish a use policy, and report annually before acquiring surveillance technology."
+    },
+    "Biometric Privacy": {
+      "name": "Biometric privacy laws",
+      "summary": "State laws such as Illinois BIPA, and some local bans, restrict collecting facial geometry and other biometrics, including for facial recognition."
+    },
+    "FAL Convention": {
+      "name": "IMO Facilitation Convention",
+      "summary": "Since 2024, ports must accept ship clearance information electronically through a maritime single window."
+    },
+    "ISPS/MTSA": {
+      "name": "ISPS Code and US MTSA",
+      "summary": "Security plans, security officers, access control, and drills for ships and port facilities."
+    },
+    "SSI": {
+      "name": "Sensitive Security Information (49 CFR 1520)",
+      "summary": "In the US, vessel and facility security plans and related details may be shared only with covered persons who have a need to know."
+    },
+    "TWIC": {
+      "name": "Transportation Worker Identification Credential",
+      "summary": "Required in the US for unescorted access to secure areas of MTSA-regulated vessels and facilities."
+    },
+    "MLC 2006": {
+      "name": "Maritime Labour Convention",
+      "summary": "Seafarers’ rights, including minimum hours of rest and records of work and rest that port state control can inspect."
+    },
+    "STCW": {
+      "name": "STCW Convention",
+      "summary": "Standards of Training, Certification and Watchkeeping for seafarers, including watchkeeping and rest requirements."
+    },
+    "ISM Code": {
+      "name": "International Safety Management Code",
+      "summary": "Requires a safety management system, including planned maintenance and reporting of non-conformities."
+    },
+    "IMO Cyber": {
+      "name": "IMO Resolution MSC.428(98)",
+      "summary": "Cyber risks, including to shipboard operational technology, must be addressed in the ship’s safety management system."
+    },
+    "USCG Cyber Rule": {
+      "name": "US Coast Guard cybersecurity rule",
+      "summary": "A 2025 rule requiring US-flagged vessels and MTSA facilities to maintain cybersecurity plans, designate cybersecurity officers, train staff, and report incidents."
+    },
+    "EU MRV/ETS": {
+      "name": "EU MRV and Emissions Trading System",
+      "summary": "EU monitoring, reporting and verification of ship emissions. Since 2024 shipping is also in the EU ETS, so reported emissions carry a direct carbon cost."
+    },
+    "IMO DCS/CII": {
+      "name": "IMO Data Collection System & CII",
+      "summary": "Annual fuel-oil consumption reporting and the Carbon Intensity Indicator rating under MARPOL Annex VI."
+    }
+  },
   "nodes": [
     {
       "id": "ind-highered",
@@ -290,6 +440,9 @@
       "solutionCategory": "AI Solution",
       "readiness": "ready",
       "dataSensitivity": "internal",
+      "regulations": [
+        "Common Rule"
+      ],
       "tags": [
         "irb",
         "checklist"
@@ -320,6 +473,9 @@
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
       "dataSensitivity": "internal",
+      "regulations": [
+        "Common Rule"
+      ],
       "tags": [
         "common rule",
         "triage"
@@ -344,7 +500,11 @@
       "childrenIds": [],
       "solutionCategory": "Requirements Gap",
       "readiness": "needs-work",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA",
+        "Common Rule"
+      ],
       "tags": [
         "ferpa",
         "research data",
@@ -417,7 +577,10 @@
       "childrenIds": [],
       "solutionCategory": "AI Solution",
       "readiness": "needs-work",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "feedback",
         "lms",
@@ -457,6 +620,9 @@
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
       "dataSensitivity": "internal",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "norming",
         "rubrics"
@@ -484,7 +650,10 @@
       "childrenIds": [],
       "solutionCategory": "Requirements Gap",
       "readiness": "blocked",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "policy",
         "shadow ai",
@@ -532,7 +701,10 @@
       "childrenIds": [],
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "lms",
         "nudges",
@@ -563,7 +735,10 @@
       "childrenIds": [],
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "ferpa training",
         "grades"
@@ -622,7 +797,11 @@
       "childrenIds": [],
       "solutionCategory": "AI Solution",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA",
+        "ADA Title II"
+      ],
       "tags": [
         "accessibility",
         "captions",
@@ -653,6 +832,9 @@
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
       "dataSensitivity": "internal",
+      "regulations": [
+        "ADA Title II"
+      ],
       "tags": [
         "wcag",
         "lms"
@@ -678,6 +860,9 @@
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
       "dataSensitivity": "public",
+      "regulations": [
+        "ADA Title II"
+      ],
       "tags": [
         "templates",
         "universal design"
@@ -849,7 +1034,11 @@
       "childrenIds": [],
       "solutionCategory": "AI Solution",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA",
+        "GDPR"
+      ],
       "tags": [
         "idp",
         "ocr",
@@ -882,7 +1071,10 @@
       "childrenIds": [],
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "webhook",
         "sis",
@@ -960,6 +1152,9 @@
       "solutionCategory": "AI Solution",
       "readiness": "ready",
       "dataSensitivity": "public",
+      "regulations": [
+        "GDPR"
+      ],
       "tags": [
         "chatbot",
         "rag",
@@ -990,6 +1185,9 @@
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
       "dataSensitivity": "internal",
+      "regulations": [
+        "TCPA"
+      ],
       "tags": [
         "crm",
         "routing"
@@ -1048,6 +1246,10 @@
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "GLBA",
+        "FERPA"
+      ],
       "tags": [
         "portal",
         "reminders"
@@ -1077,6 +1279,11 @@
       "solutionCategory": "AI Solution",
       "readiness": "needs-work",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "IRS FTI",
+        "GLBA",
+        "FERPA"
+      ],
       "tags": [
         "glba",
         "fti",
@@ -1109,6 +1316,9 @@
       "solutionCategory": "Requirements Gap",
       "readiness": "needs-work",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "GLBA"
+      ],
       "tags": [
         "glba",
         "compliance",
@@ -1178,7 +1388,10 @@
       "childrenIds": [],
       "solutionCategory": "AI Solution",
       "readiness": "needs-work",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "chatbot",
         "rag",
@@ -1245,7 +1458,10 @@
       "childrenIds": [],
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "crm",
         "sop"
@@ -1304,7 +1520,10 @@
       "childrenIds": [],
       "solutionCategory": "AI Solution",
       "readiness": "needs-work",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "predictive analytics",
         "retention",
@@ -1337,7 +1556,10 @@
       "childrenIds": [],
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "early alert",
         "lms"
@@ -1366,7 +1588,10 @@
       "childrenIds": [],
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "process",
         "raci"
@@ -1394,7 +1619,10 @@
       "childrenIds": [],
       "solutionCategory": "Requirements Gap",
       "readiness": "needs-work",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "integration",
         "governance"
@@ -1461,7 +1689,10 @@
       "childrenIds": [],
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "self-service",
         "verification"
@@ -1490,7 +1721,10 @@
       "childrenIds": [],
       "solutionCategory": "Process Improvement",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "ferpa",
         "sop",
@@ -1520,7 +1754,10 @@
       "childrenIds": [],
       "solutionCategory": "AI Solution",
       "readiness": "needs-work",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "classification",
         "email"
@@ -1590,6 +1827,10 @@
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "ADA/504",
+        "FERPA"
+      ],
       "tags": [
         "accommodations",
         "ada",
@@ -1620,6 +1861,10 @@
       "solutionCategory": "AI Solution",
       "readiness": "blocked",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "ADA/504",
+        "FERPA"
+      ],
       "tags": [
         "not recommended",
         "health data"
@@ -1650,6 +1895,10 @@
       "solutionCategory": "Requirements Gap",
       "readiness": "blocked",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "ADA/504",
+        "FERPA"
+      ],
       "tags": [
         "records management",
         "security"
@@ -1706,6 +1955,9 @@
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
       "dataSensitivity": "restricted",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "scheduling",
         "mental health"
@@ -1800,7 +2052,10 @@
       "childrenIds": [],
       "solutionCategory": "Automation Fit",
       "readiness": "ready",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "ipeds",
         "data pipelines"
@@ -1935,7 +2190,10 @@
       "childrenIds": [],
       "solutionCategory": "Requirements Gap",
       "readiness": "blocked",
-      "dataSensitivity": "ferpa",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FERPA"
+      ],
       "tags": [
         "contracts",
         "vendor risk"
@@ -2030,6 +2288,9 @@
       "solutionCategory": "AI Solution",
       "readiness": "ready",
       "dataSensitivity": "internal",
+      "regulations": [
+        "Library Records"
+      ],
       "tags": [
         "library",
         "rag",
@@ -2075,6 +2336,2241 @@
         ],
         "privacyNotes": [
           "Confirm the consortium’s chat transcript retention and privacy terms match local policy."
+        ]
+      }
+    },
+    {
+      "id": "ind-healthcare",
+      "label": "Healthcare",
+      "type": "industry",
+      "parentId": null,
+      "childrenIds": [
+        "dom-hc-clinical",
+        "dom-hc-behavioral",
+        "dom-hc-revenue",
+        "dom-hc-access"
+      ],
+      "summary": "Hospitals, clinics, and health systems: clinical care, behavioral health, revenue cycle, and patient access."
+    },
+    {
+      "id": "dom-hc-clinical",
+      "label": "Clinical Care",
+      "type": "domain",
+      "parentId": "ind-healthcare",
+      "childrenIds": [
+        "role-hc-physician",
+        "role-hc-nurse-manager"
+      ],
+      "summary": "Physicians, advanced practice providers, and nursing."
+    },
+    {
+      "id": "role-hc-physician",
+      "label": "Physician / APP",
+      "type": "role",
+      "parentId": "dom-hc-clinical",
+      "childrenIds": [
+        "task-hc-documentation",
+        "task-hc-inbox"
+      ],
+      "summary": "Physicians and advanced practice providers in ambulatory and inpatient care."
+    },
+    {
+      "id": "task-hc-documentation",
+      "label": "After-Visit Documentation Burden",
+      "type": "scenario",
+      "parentId": "role-hc-physician",
+      "childrenIds": [
+        "sol-hc-ambient-scribe",
+        "sol-hc-note-templates",
+        "sol-hc-ai-governance-gap"
+      ],
+      "tags": [
+        "burnout",
+        "documentation"
+      ],
+      "details": {
+        "context": "Clinicians spend one to two hours a day after clinic finishing notes in the EHR. This after-hours charting is a leading driver of burnout.",
+        "problemStatement": "Documentation crowds out patient care and rest, and rushed notes reduce accuracy and coding quality."
+      }
+    },
+    {
+      "id": "sol-hc-ambient-scribe",
+      "label": "Ambient Clinical Scribe",
+      "type": "solution",
+      "parentId": "task-hc-documentation",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA",
+        "Recording Consent"
+      ],
+      "tags": [
+        "speech",
+        "summarization",
+        "ehr"
+      ],
+      "details": {
+        "description": "With the patient’s consent, capture the visit conversation and generate a draft note in the clinic’s format for the clinician to review, edit, and sign.",
+        "pattern": "Speech-to-text plus structured summarization, with clinician sign-off.",
+        "signals": [
+          "Notes are mostly narrative history and assessment/plan.",
+          "Clinicians already dictate."
+        ],
+        "implementationSteps": [
+          "Pilot in specialties with conversational visits.",
+          "Integrate drafts into the EHR note workflow, not a separate app.",
+          "Measure after-hours EHR time before and after.",
+          "Script patient consent, with an easy opt-out."
+        ],
+        "keyBlockers": [
+          "Vendor security review and BAA.",
+          "A draft that omits or invents findings creates liability, so every note needs clinician review."
+        ],
+        "privacyNotes": [
+          "Any vendor that stores or processes PHI must sign a business associate agreement, and the contract should bar using PHI to train its models.",
+          "Get consent to record, and follow the strictest state recording-consent law that applies.",
+          "Set a short retention period for audio, and delete it once the note is signed unless policy requires otherwise.",
+          "Exclude or pause for sensitive visits (for example, SUD treatment or psychotherapy) unless those are explicitly in scope."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-note-templates",
+      "label": "Specialty Note Templates",
+      "type": "solution",
+      "parentId": "task-hc-documentation",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "ehr",
+        "templates"
+      ],
+      "details": {
+        "description": "Replace free-form notes with specialty-specific smart templates and shared phrase libraries. This cuts clicks without any new technology.",
+        "implementationSteps": [
+          "Shadow three clinicians to find repeated text.",
+          "Build templates with required fields only.",
+          "Retire unused legacy templates."
+        ],
+        "keyBlockers": [
+          "EHR build-team backlog.",
+          "Template sprawl if not governed."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-ai-governance-gap",
+      "label": "No Approved Pathway for PHI in AI Tools",
+      "type": "solution",
+      "parentId": "task-hc-documentation",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "blocked",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA",
+        "Section 1557"
+      ],
+      "tags": [
+        "governance",
+        "shadow ai"
+      ],
+      "details": {
+        "description": "There is no approved way to send PHI to an AI service, so clinicians either do without or paste PHI into consumer tools. That is a reportable HIPAA breach risk.",
+        "implementationSteps": [
+          "Stand up an AI governance committee with privacy, security, clinical, and equity members.",
+          "Define vendor criteria: BAA, data retention, no model training on PHI.",
+          "Approve at least one reference architecture so there is a sanctioned option."
+        ],
+        "keyBlockers": [
+          "Executive sponsorship.",
+          "Legal review timelines."
+        ],
+        "privacyNotes": [
+          "Pasting PHI into a tool without a BAA is an impermissible disclosure and may trigger breach notification.",
+          "Clinical decision-support uses also need a bias review under Section 1557."
+        ]
+      }
+    },
+    {
+      "id": "task-hc-inbox",
+      "label": "Patient Portal Inbox Overload",
+      "type": "scenario",
+      "parentId": "role-hc-physician",
+      "childrenIds": [
+        "sol-hc-message-drafts",
+        "sol-hc-message-routing",
+        "sol-hc-team-inbox"
+      ],
+      "tags": [
+        "inbox",
+        "burnout"
+      ],
+      "details": {
+        "context": "Patient portal messages have surged. Physicians answer questions about results, refills, and symptoms, often after hours and unpaid.",
+        "problemStatement": "Replies are slow, clinicians burn out, and routine requests reach the physician when another team member could handle them."
+      }
+    },
+    {
+      "id": "sol-hc-message-drafts",
+      "label": "AI-Drafted Message Replies",
+      "type": "solution",
+      "parentId": "task-hc-inbox",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA",
+        "Info Blocking"
+      ],
+      "tags": [
+        "inbox",
+        "drafting"
+      ],
+      "details": {
+        "description": "The EHR drafts a reply grounded in the patient’s chart. The clinician edits and sends it, and nothing goes out automatically.",
+        "implementationSteps": [
+          "Enable within the EHR vendor’s environment under the existing BAA.",
+          "Start with lower-risk message types such as refills and logistics.",
+          "Track edit rates and clinician-reported safety issues."
+        ],
+        "keyBlockers": [
+          "Drafts can sound confident while being clinically wrong.",
+          "Decide in policy whether to tell patients that AI helped draft replies."
+        ],
+        "privacyNotes": [
+          "Keep processing inside the EHR’s contracted environment.",
+          "Under information-blocking rules, results are often released to the portal before the clinician has reviewed them, which drives much of the message volume. Drafting must not delay that release.",
+          "Don’t let drafts pull in sensitive history (SUD, psychotherapy, reproductive or HIV care) that the question doesn’t need."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-message-routing",
+      "label": "Message Routing to Care Team Pools",
+      "type": "solution",
+      "parentId": "task-hc-inbox",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA"
+      ],
+      "tags": [
+        "routing",
+        "ehr"
+      ],
+      "details": {
+        "description": "Rules route refill, scheduling, and form requests to nurse or staff pools, so physicians see only messages that need them.",
+        "implementationSteps": [
+          "Categorize a month of messages.",
+          "Configure routing rules and pool ownership.",
+          "Monitor turnaround by pool."
+        ],
+        "keyBlockers": [
+          "Patients choose the wrong category, so rules need a manual reroute path."
+        ],
+        "privacyNotes": [
+          "Pool members get access based on their role; audit access to high-profile or employee patients."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-team-inbox",
+      "label": "Team-Based Inbox Protocols",
+      "type": "solution",
+      "parentId": "task-hc-inbox",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "team-based care"
+      ],
+      "details": {
+        "description": "Standing protocols let RNs and MAs resolve common requests, such as normal results or refills within parameters, without the physician.",
+        "implementationSteps": [
+          "Write protocols with physician leadership.",
+          "Train and credential staff.",
+          "Audit a sample monthly."
+        ],
+        "keyBlockers": [
+          "Scope-of-practice rules vary by state."
+        ]
+      }
+    },
+    {
+      "id": "role-hc-nurse-manager",
+      "label": "Nurse Manager",
+      "type": "role",
+      "parentId": "dom-hc-clinical",
+      "childrenIds": [
+        "task-hc-staffing"
+      ],
+      "summary": "Runs unit staffing, scheduling, and quality."
+    },
+    {
+      "id": "task-hc-staffing",
+      "label": "Shift Coverage Gaps",
+      "type": "scenario",
+      "parentId": "role-hc-nurse-manager",
+      "childrenIds": [
+        "sol-hc-callout-automation",
+        "sol-hc-credential-gap"
+      ],
+      "tags": [
+        "staffing",
+        "nursing"
+      ],
+      "details": {
+        "context": "Managers build schedules in spreadsheets and fill last-minute callouts by texting staff one by one.",
+        "problemStatement": "Gaps are found late, and filling them costs hours of manager time and expensive agency shifts."
+      }
+    },
+    {
+      "id": "sol-hc-callout-automation",
+      "label": "Callout Broadcast & Auto-Fill",
+      "type": "solution",
+      "parentId": "task-hc-staffing",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "sms",
+        "workflow"
+      ],
+      "details": {
+        "description": "When a callout is logged, eligible staff are notified automatically, and the first acceptance is assigned within overtime rules.",
+        "implementationSteps": [
+          "Encode eligibility rules: credential, unit, hours worked.",
+          "Connect the scheduling system’s callout event to an SMS workflow.",
+          "Write acceptances back to the schedule."
+        ],
+        "keyBlockers": [
+          "Union agreements may set the order in which shifts are offered."
+        ],
+        "privacyNotes": [
+          "Staff data is employee PII, not PHI. Store only “unavailable,” never the medical or family reason for a callout."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-credential-gap",
+      "label": "Credential Data Out of Sync",
+      "type": "solution",
+      "parentId": "task-hc-staffing",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "hr",
+        "integration"
+      ],
+      "details": {
+        "description": "License and certification expirations live in HR while schedules live elsewhere, so automated assignment could schedule ineligible staff.",
+        "implementationSteps": [
+          "Feed credential expirations into scheduling.",
+          "Block assignment when a credential has expired."
+        ],
+        "keyBlockers": [
+          "HR system API access."
+        ]
+      }
+    },
+    {
+      "id": "dom-hc-behavioral",
+      "label": "Behavioral Health",
+      "type": "domain",
+      "parentId": "ind-healthcare",
+      "childrenIds": [
+        "role-hc-sud-counselor"
+      ],
+      "summary": "Mental health and substance use disorder (SUD) treatment."
+    },
+    {
+      "id": "role-hc-sud-counselor",
+      "label": "SUD Counselor / BH Clinician",
+      "type": "role",
+      "parentId": "dom-hc-behavioral",
+      "childrenIds": [
+        "task-hc-care-coordination"
+      ],
+      "summary": "Provides substance use and mental health treatment."
+    },
+    {
+      "id": "task-hc-care-coordination",
+      "label": "Care Coordination for SUD Patients",
+      "type": "scenario",
+      "parentId": "role-hc-sud-counselor",
+      "childrenIds": [
+        "sol-hc-part2-consent",
+        "sol-hc-segmentation-gap",
+        "sol-hc-bh-ai-hold"
+      ],
+      "tags": [
+        "sud",
+        "care coordination"
+      ],
+      "details": {
+        "context": "Patients in the SUD program also see primary care and visit the ED, but SUD records are kept separate under 42 CFR Part 2.",
+        "problemStatement": "Care is fragmented. Unsure what they may share, staff often share nothing, even when the patient would consent."
+      }
+    },
+    {
+      "id": "sol-hc-part2-consent",
+      "label": "Standard Part 2 Consent Workflow",
+      "type": "solution",
+      "parentId": "task-hc-care-coordination",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "42 CFR Part 2",
+        "HIPAA"
+      ],
+      "tags": [
+        "consent",
+        "sud"
+      ],
+      "details": {
+        "description": "Use a standard, plain-language consent that patients can sign once for treatment, payment, and health care operations, plus training on what it allows.",
+        "implementationSteps": [
+          "Adopt a single-consent form reviewed by counsel.",
+          "Build it into intake, and let patients revoke it.",
+          "Train staff on the redisclosure notice that must go with disclosures."
+        ],
+        "keyBlockers": [
+          "Staff fear of getting it wrong."
+        ],
+        "privacyNotes": [
+          "The 2024 Part 2 rule allows one consent for all future treatment, payment, and operations uses. Uses against the patient in legal proceedings still require consent or a court order.",
+          "Records disclosed under Part 2 must carry the required redisclosure notice."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-segmentation-gap",
+      "label": "EHR Can’t Segment Part 2 Data",
+      "type": "solution",
+      "parentId": "task-hc-care-coordination",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "42 CFR Part 2"
+      ],
+      "tags": [
+        "data segmentation",
+        "ehr"
+      ],
+      "details": {
+        "description": "The EHR can’t tag and filter Part 2 records, so sharing is all-or-nothing and staff default to nothing.",
+        "implementationSteps": [
+          "Inventory where SUD data lives: notes, problem list, medications.",
+          "Enable data-segmentation features or a separate compartment.",
+          "Test what flows out through HIE and portal feeds."
+        ],
+        "keyBlockers": [
+          "EHR vendor capability."
+        ],
+        "privacyNotes": [
+          "Medication lists alone can reveal SUD treatment (for example, buprenorphine), so segmentation must cover more than notes."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-bh-ai-hold",
+      "label": "AI Summaries of Therapy & SUD Notes",
+      "type": "solution",
+      "parentId": "task-hc-care-coordination",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "blocked",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "42 CFR Part 2",
+        "HIPAA"
+      ],
+      "tags": [
+        "not recommended",
+        "behavioral health"
+      ],
+      "details": {
+        "description": "The idea is to summarize therapy and SUD notes for other clinicians. The diagnosis: not yet. The data carries the strictest protections and segmentation doesn’t exist, so summaries would leak protected content into general records.",
+        "pattern": "Diagnosis: fix consent and segmentation first.",
+        "implementationSteps": [
+          "Revisit once segmentation and consent workflows are in place.",
+          "If piloted: private deployment, summaries stay within the program, and clinicians review them."
+        ],
+        "keyBlockers": [
+          "Psychotherapy notes need separate patient authorization for most uses under HIPAA."
+        ],
+        "privacyNotes": [
+          "A summary is a new disclosure. It inherits Part 2 and psychotherapy-note restrictions and must not flow into the general chart."
+        ]
+      }
+    },
+    {
+      "id": "dom-hc-revenue",
+      "label": "Revenue Cycle",
+      "type": "domain",
+      "parentId": "ind-healthcare",
+      "childrenIds": [
+        "role-hc-billing"
+      ],
+      "summary": "Billing, coding, claims, and prior authorization."
+    },
+    {
+      "id": "role-hc-billing",
+      "label": "Billing Specialist",
+      "type": "role",
+      "parentId": "dom-hc-revenue",
+      "childrenIds": [
+        "task-hc-denials",
+        "task-hc-prior-auth"
+      ],
+      "summary": "Works claims from submission through payment or appeal."
+    },
+    {
+      "id": "task-hc-denials",
+      "label": "Claim Denial Management",
+      "type": "scenario",
+      "parentId": "role-hc-billing",
+      "childrenIds": [
+        "sol-hc-denial-ai",
+        "sol-hc-835-ingest",
+        "sol-hc-denial-rca"
+      ],
+      "tags": [
+        "claims",
+        "revenue"
+      ],
+      "details": {
+        "context": "Many claims are denied on first submission. Specialists work each one by reading remittance codes, pulling documentation, and writing appeals.",
+        "problemStatement": "Denials pile up faster than they are worked, and many are written off when the appeal window closes."
+      }
+    },
+    {
+      "id": "sol-hc-denial-ai",
+      "label": "Denial Triage & Appeal Drafting",
+      "type": "solution",
+      "parentId": "task-hc-denials",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA"
+      ],
+      "tags": [
+        "classification",
+        "appeals"
+      ],
+      "details": {
+        "description": "Classify denials by root cause and expected recovery, then draft appeal letters citing documentation and payer policy.",
+        "implementationSteps": [
+          "Label past denials with their outcomes.",
+          "Prioritize by expected recovery.",
+          "Generate appeal drafts for specialist review."
+        ],
+        "keyBlockers": [
+          "Payer policies change frequently."
+        ],
+        "privacyNotes": [
+          "Any vendor that stores or processes PHI must sign a business associate agreement, and the contract should bar using PHI to train its models.",
+          "Pull only the chart excerpts the appeal needs (minimum necessary), not the whole record."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-835-ingest",
+      "label": "Automated Remittance Ingestion",
+      "type": "solution",
+      "parentId": "task-hc-denials",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA"
+      ],
+      "tags": [
+        "edi",
+        "batch"
+      ],
+      "details": {
+        "description": "Parse 835 remittance files from the clearinghouse automatically, and route denials into work queues by reason code.",
+        "implementationSteps": [
+          "Subscribe to clearinghouse 835 delivery.",
+          "Map CARC/RARC codes to queues.",
+          "Track denial rates by payer and reason."
+        ],
+        "keyBlockers": [
+          "Clearinghouse setup."
+        ],
+        "privacyNotes": [
+          "835/837 files are HIPAA standard transactions containing PHI. Use secure transfer and restrict the landing folders."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-denial-rca",
+      "label": "Denial Root-Cause Huddle",
+      "type": "solution",
+      "parentId": "task-hc-denials",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "rca",
+        "lean"
+      ],
+      "details": {
+        "description": "A weekly cross-functional review of top denial reasons, fixing them upstream at registration and coding.",
+        "implementationSteps": [
+          "Pull the top 10 reasons weekly.",
+          "Assign an upstream owner to each.",
+          "Trend the rate over time."
+        ],
+        "keyBlockers": [
+          "Front desk and coding report to different leaders."
+        ]
+      }
+    },
+    {
+      "id": "task-hc-prior-auth",
+      "label": "Prior Authorization Requests",
+      "type": "scenario",
+      "parentId": "role-hc-billing",
+      "childrenIds": [
+        "sol-hc-pa-api",
+        "sol-hc-pa-summary"
+      ],
+      "tags": [
+        "authorization",
+        "payers"
+      ],
+      "details": {
+        "context": "Staff submit prior authorizations through payer portals, fax, and phone, then chase status manually.",
+        "problemStatement": "Authorizations delay care and consume staff time, and most of the work is re-entering information already in the chart."
+      }
+    },
+    {
+      "id": "sol-hc-pa-api",
+      "label": "Electronic Prior Authorization via Payer APIs",
+      "type": "solution",
+      "parentId": "task-hc-prior-auth",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "CMS-0057-F",
+        "HIPAA"
+      ],
+      "tags": [
+        "api",
+        "interoperability"
+      ],
+      "details": {
+        "description": "Use payer prior authorization APIs from the EHR to check requirements, submit, and track decisions without portals or fax.",
+        "implementationSteps": [
+          "Inventory payers by API readiness.",
+          "Automate the top payers first.",
+          "Keep a manual path for the rest."
+        ],
+        "keyBlockers": [
+          "Payer API rollout follows the CMS timeline, and commercial plans outside the rule may lag."
+        ],
+        "privacyNotes": [
+          "Send only the clinical data the payer’s criteria require."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-pa-summary",
+      "label": "Clinical Justification Summaries",
+      "type": "solution",
+      "parentId": "task-hc-prior-auth",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA"
+      ],
+      "tags": [
+        "summarization"
+      ],
+      "details": {
+        "description": "Draft the clinical justification by mapping relevant chart history to the payer’s criteria, for staff review.",
+        "implementationSteps": [
+          "Collect criteria for the top 20 procedures.",
+          "Generate criteria-mapped summaries.",
+          "Staff review before submission."
+        ],
+        "keyBlockers": [
+          "Criteria are often not published in a usable format."
+        ],
+        "privacyNotes": [
+          "Any vendor that stores or processes PHI must sign a business associate agreement, and the contract should bar using PHI to train its models."
+        ]
+      }
+    },
+    {
+      "id": "dom-hc-access",
+      "label": "Patient Access",
+      "type": "domain",
+      "parentId": "ind-healthcare",
+      "childrenIds": [
+        "role-hc-access-rep"
+      ],
+      "summary": "Scheduling, registration, and reminders."
+    },
+    {
+      "id": "role-hc-access-rep",
+      "label": "Patient Access Representative",
+      "type": "role",
+      "parentId": "dom-hc-access",
+      "childrenIds": [
+        "task-hc-no-shows"
+      ],
+      "summary": "Schedules appointments and registers patients."
+    },
+    {
+      "id": "task-hc-no-shows",
+      "label": "Appointment No-Shows",
+      "type": "scenario",
+      "parentId": "role-hc-access-rep",
+      "childrenIds": [
+        "sol-hc-reminders",
+        "sol-hc-noshow-model",
+        "sol-hc-open-access"
+      ],
+      "tags": [
+        "access",
+        "scheduling"
+      ],
+      "details": {
+        "context": "Some clinics lose a large share of slots to no-shows while new patients wait weeks for an appointment.",
+        "problemStatement": "Wasted capacity and long waits, which fall hardest on patients facing transportation, work, or childcare barriers."
+      }
+    },
+    {
+      "id": "sol-hc-reminders",
+      "label": "Two-Way Reminders & Waitlist Backfill",
+      "type": "solution",
+      "parentId": "task-hc-no-shows",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA",
+        "TCPA"
+      ],
+      "tags": [
+        "sms",
+        "scheduling"
+      ],
+      "details": {
+        "description": "Two-way SMS reminders let patients confirm or cancel, and cancelled slots are offered automatically to waitlisted patients.",
+        "implementationSteps": [
+          "Enable two-way reminders in the scheduling system.",
+          "Offer freed slots to the waitlist automatically.",
+          "Track fill rate."
+        ],
+        "keyBlockers": [
+          "Patient contact data quality."
+        ],
+        "privacyNotes": [
+          "Keep texts minimal: time and location only. No diagnosis, and no department name that reveals sensitive care (for example “Oncology” or “Behavioral Health”).",
+          "Honor patients’ communication preferences and TCPA consent."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-noshow-model",
+      "label": "No-Show Prediction (Equity-Reviewed)",
+      "type": "solution",
+      "parentId": "task-hc-no-shows",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA",
+        "Section 1557"
+      ],
+      "tags": [
+        "predictive",
+        "equity"
+      ],
+      "details": {
+        "description": "Predict which appointments are at risk and offer support, such as a ride, a telehealth switch, or a reminder call. Don’t double-book those patients.",
+        "implementationSteps": [
+          "Train on scheduling history.",
+          "Audit the model for disparate impact by race, language, and payer.",
+          "Use scores to trigger outreach, not to overbook."
+        ],
+        "keyBlockers": [
+          "Overbooking by risk score punishes the patients with the most barriers."
+        ],
+        "privacyNotes": [
+          "Under Section 1557, covered entities must identify and mitigate discrimination risk in patient care decision support tools.",
+          "Leave out features that proxy for protected characteristics unless the goal is to measure bias."
+        ]
+      }
+    },
+    {
+      "id": "sol-hc-open-access",
+      "label": "Open-Access Scheduling Templates",
+      "type": "solution",
+      "parentId": "task-hc-no-shows",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "access",
+        "templates"
+      ],
+      "details": {
+        "description": "Hold a share of each day open for same-day and next-day visits. Shorter lead times reduce no-shows.",
+        "implementationSteps": [
+          "Analyze lead time against no-show rate.",
+          "Redesign templates.",
+          "Review monthly."
+        ],
+        "keyBlockers": [
+          "Provider preference for fully booked schedules."
+        ]
+      }
+    },
+    {
+      "id": "ind-police",
+      "label": "Police Department",
+      "type": "industry",
+      "parentId": null,
+      "childrenIds": [
+        "dom-pd-patrol",
+        "dom-pd-records",
+        "dom-pd-investigations",
+        "dom-pd-communications"
+      ],
+      "summary": "Municipal and county law enforcement: patrol, records, investigations, and 911 communications."
+    },
+    {
+      "id": "dom-pd-patrol",
+      "label": "Patrol Operations",
+      "type": "domain",
+      "parentId": "ind-police",
+      "childrenIds": [
+        "role-pd-officer",
+        "role-pd-sergeant"
+      ],
+      "summary": "Uniformed patrol and field supervision."
+    },
+    {
+      "id": "role-pd-officer",
+      "label": "Patrol Officer",
+      "type": "role",
+      "parentId": "dom-pd-patrol",
+      "childrenIds": [
+        "task-pd-report-writing"
+      ],
+      "summary": "Responds to calls for service and documents incidents."
+    },
+    {
+      "id": "task-pd-report-writing",
+      "label": "Incident Report Writing",
+      "type": "scenario",
+      "parentId": "role-pd-officer",
+      "childrenIds": [
+        "sol-pd-ai-report-draft",
+        "sol-pd-report-templates",
+        "sol-pd-rms-gap"
+      ],
+      "tags": [
+        "reports",
+        "patrol"
+      ],
+      "details": {
+        "context": "Officers spend a large share of each shift writing reports, often from memory, hours after the call. Body-worn cameras record most interactions.",
+        "problemStatement": "Report writing takes officers off the street, quality varies, and supervisors and prosecutors send reports back for missing elements."
+      }
+    },
+    {
+      "id": "sol-pd-ai-report-draft",
+      "label": "AI Report Drafts from Body-Cam Audio",
+      "type": "solution",
+      "parentId": "task-pd-report-writing",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "CJIS",
+        "AI Report Laws",
+        "Brady/Giglio"
+      ],
+      "tags": [
+        "report writing",
+        "body-worn camera"
+      ],
+      "details": {
+        "description": "Generate a first-draft narrative from the body-worn camera transcript. The officer corrects it, adds their own observations, and attests to it.",
+        "pattern": "AI drafting with mandatory officer review and attestation.",
+        "implementationSteps": [
+          "Get prosecutor and defense-bar input before piloting.",
+          "Require officers to edit and attest, and flag any placeholders left unedited.",
+          "Label reports as AI-assisted and retain drafts where state law requires.",
+          "Audit a sample against the video."
+        ],
+        "keyBlockers": [
+          "A hallucinated detail can undermine a prosecution and an officer’s credibility.",
+          "Prosecutors may decline AI-drafted reports."
+        ],
+        "privacyNotes": [
+          "Any vendor with access to criminal justice information must meet the CJIS Security Policy and sign the CJIS Security Addendum. Most consumer and general-purpose AI services don’t.",
+          "Drafts and AI outputs may be discoverable under Brady/Giglio. Keep them under the records retention policy.",
+          "Transcripts can capture victims, juveniles, and bystanders, so exclude or restrict sensitive incident types."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-report-templates",
+      "label": "Structured Report Templates",
+      "type": "solution",
+      "parentId": "task-pd-report-writing",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "templates",
+        "rms"
+      ],
+      "details": {
+        "description": "Incident-type templates list the elements needed to charge each offense, so reports are complete the first time.",
+        "implementationSteps": [
+          "Work with prosecutors on the elements per offense.",
+          "Build templates into the RMS.",
+          "Track the return rate."
+        ],
+        "keyBlockers": [
+          "RMS configuration effort."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-rms-gap",
+      "label": "RMS Not Integrated with CAD & Video",
+      "type": "solution",
+      "parentId": "task-pd-report-writing",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "CJIS"
+      ],
+      "tags": [
+        "integration",
+        "cad"
+      ],
+      "details": {
+        "description": "Officers retype times, locations, and names from CAD, and the RMS can’t link to video, so any drafting tool has little structured data to work from.",
+        "implementationSteps": [
+          "Prefill RMS from CAD.",
+          "Link evidence IDs from the video system.",
+          "Standardize name and location records."
+        ],
+        "keyBlockers": [
+          "Vendor integration costs."
+        ],
+        "privacyNotes": [
+          "Integrations move CJI between systems, and each connection must meet CJIS encryption and audit requirements."
+        ]
+      }
+    },
+    {
+      "id": "role-pd-sergeant",
+      "label": "Patrol Sergeant",
+      "type": "role",
+      "parentId": "dom-pd-patrol",
+      "childrenIds": [
+        "task-pd-bwc-review"
+      ],
+      "summary": "Supervises patrol officers and reviews their conduct."
+    },
+    {
+      "id": "task-pd-bwc-review",
+      "label": "Body-Worn Camera Footage Review",
+      "type": "scenario",
+      "parentId": "role-pd-sergeant",
+      "childrenIds": [
+        "sol-pd-bwc-analytics",
+        "sol-pd-review-policy"
+      ],
+      "tags": [
+        "video",
+        "accountability"
+      ],
+      "details": {
+        "context": "The department records thousands of hours of video, but supervisors review only a sliver, usually after a complaint.",
+        "problemStatement": "Coaching opportunities and policy problems surface late, if at all."
+      }
+    },
+    {
+      "id": "sol-pd-bwc-analytics",
+      "label": "Transcript-Based Review Flags",
+      "type": "solution",
+      "parentId": "task-pd-bwc-review",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "CJIS",
+        "VAWA",
+        "Juvenile Records"
+      ],
+      "tags": [
+        "video",
+        "supervision"
+      ],
+      "details": {
+        "description": "Analyze transcripts for markers such as use-of-force language or escalation, and queue those clips for supervisor review and coaching.",
+        "implementationSteps": [
+          "Agree on what gets flagged and how it is used, with labor representatives.",
+          "Emphasize coaching over discipline for most flags.",
+          "Measure false flags."
+        ],
+        "keyBlockers": [
+          "Union agreements.",
+          "Trust that the tool is fair."
+        ],
+        "privacyNotes": [
+          "Any vendor with access to criminal justice information must meet the CJIS Security Policy and sign the CJIS Security Addendum. Most consumer and general-purpose AI services don’t.",
+          "Footage often shows victims, minors, medical situations, and home interiors, so access must be role-restricted and audited.",
+          "Don’t add face recognition. Analyze transcripts only."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-review-policy",
+      "label": "Randomized Review & Coaching Policy",
+      "type": "solution",
+      "parentId": "task-pd-bwc-review",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "policy",
+        "coaching"
+      ],
+      "details": {
+        "description": "Each sergeant reviews a random set of videos per officer each month against defined criteria, and feeds coaching into training.",
+        "implementationSteps": [
+          "Define the review rubric.",
+          "Randomize selection.",
+          "Track coaching themes department-wide."
+        ],
+        "keyBlockers": [
+          "Sergeant time."
+        ]
+      }
+    },
+    {
+      "id": "dom-pd-records",
+      "label": "Records & Public Information",
+      "type": "domain",
+      "parentId": "ind-police",
+      "childrenIds": [
+        "role-pd-records-clerk"
+      ],
+      "summary": "Records management, releases, and retention."
+    },
+    {
+      "id": "role-pd-records-clerk",
+      "label": "Records Clerk",
+      "type": "role",
+      "parentId": "dom-pd-records",
+      "childrenIds": [
+        "task-pd-records-requests"
+      ],
+      "summary": "Processes records requests and releases."
+    },
+    {
+      "id": "task-pd-records-requests",
+      "label": "Public Records Requests & Redaction",
+      "type": "scenario",
+      "parentId": "role-pd-records-clerk",
+      "childrenIds": [
+        "sol-pd-auto-redaction",
+        "sol-pd-request-portal",
+        "sol-pd-retention-gap"
+      ],
+      "tags": [
+        "records",
+        "transparency"
+      ],
+      "details": {
+        "context": "Requests for reports and video arrive under state public records law, with statutory deadlines. Redacting video is frame-by-frame work.",
+        "problemStatement": "Backlogs, missed deadlines, and lawsuits, plus the risk of releasing a victim’s or juvenile’s identity."
+      }
+    },
+    {
+      "id": "sol-pd-auto-redaction",
+      "label": "AI-Assisted Video & Document Redaction",
+      "type": "solution",
+      "parentId": "task-pd-records-requests",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "Public Records",
+        "VAWA",
+        "Juvenile Records",
+        "CJIS"
+      ],
+      "tags": [
+        "redaction",
+        "foia"
+      ],
+      "details": {
+        "description": "Detect faces, plates, screens, and spoken names for redaction, followed by a mandatory human quality check before release.",
+        "implementationSteps": [
+          "Run it in a CJIS-compliant environment.",
+          "Require human QA on every release.",
+          "Log each redaction and its legal basis."
+        ],
+        "keyBlockers": [
+          "Detection misses in low light or crowded scenes."
+        ],
+        "privacyNotes": [
+          "One missed juvenile face or victim name can cause serious harm, so a human must check every release.",
+          "Withholding rules differ by state. Encode them in redaction templates rather than relying on memory."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-request-portal",
+      "label": "Request Portal with Deadline Tracking",
+      "type": "solution",
+      "parentId": "task-pd-records-requests",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "Public Records"
+      ],
+      "tags": [
+        "portal",
+        "transparency"
+      ],
+      "details": {
+        "description": "A portal logs requests, calculates statutory deadlines, and releases routine records automatically where the law allows.",
+        "implementationSteps": [
+          "Adopt a request-tracking portal.",
+          "Configure deadlines by record type.",
+          "Publish frequently requested records proactively."
+        ],
+        "keyBlockers": [
+          "Procurement."
+        ],
+        "privacyNotes": [
+          "Requester identities may themselves be protected. Check state law."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-retention-gap",
+      "label": "Retention Schedule Not Enforced",
+      "type": "solution",
+      "parentId": "task-pd-records-requests",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "Public Records",
+        "CJIS"
+      ],
+      "tags": [
+        "retention",
+        "records management"
+      ],
+      "details": {
+        "description": "Video and reports are kept indefinitely or purged inconsistently, which raises storage cost, discovery burden, and breach exposure.",
+        "implementationSteps": [
+          "Map categories to the state retention schedule.",
+          "Configure automatic retention in the evidence system.",
+          "Apply legal holds for pending cases."
+        ],
+        "keyBlockers": [
+          "Fear of deleting something needed later."
+        ],
+        "privacyNotes": [
+          "Keeping data beyond its retention period increases what a breach exposes."
+        ]
+      }
+    },
+    {
+      "id": "dom-pd-investigations",
+      "label": "Investigations",
+      "type": "domain",
+      "parentId": "ind-police",
+      "childrenIds": [
+        "role-pd-detective",
+        "role-pd-crime-analyst"
+      ],
+      "summary": "Detectives and crime analysis."
+    },
+    {
+      "id": "role-pd-detective",
+      "label": "Detective",
+      "type": "role",
+      "parentId": "dom-pd-investigations",
+      "childrenIds": [
+        "task-pd-digital-evidence"
+      ],
+      "summary": "Investigates cases and prepares them for prosecution."
+    },
+    {
+      "id": "task-pd-digital-evidence",
+      "label": "Digital Evidence Overload",
+      "type": "scenario",
+      "parentId": "role-pd-detective",
+      "childrenIds": [
+        "sol-pd-evidence-triage",
+        "sol-pd-dems"
+      ],
+      "tags": [
+        "investigations",
+        "evidence"
+      ],
+      "details": {
+        "context": "A single case can involve phone extractions, CCTV, social media returns, and hours of interviews, often terabytes of data.",
+        "problemStatement": "Investigators can’t review everything, and exculpatory evidence may be missed."
+      }
+    },
+    {
+      "id": "sol-pd-evidence-triage",
+      "label": "AI Evidence Search & Transcription",
+      "type": "solution",
+      "parentId": "task-pd-digital-evidence",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "CJIS",
+        "Fourth Amendment",
+        "Brady/Giglio"
+      ],
+      "tags": [
+        "digital forensics",
+        "evidence"
+      ],
+      "details": {
+        "description": "Transcribe, index, and search seized material, with timestamped links back to the source. Investigators verify everything the tool surfaces.",
+        "implementationSteps": [
+          "Deploy on-premises or in a CJIS-compliant cloud.",
+          "Restrict searches to the data and date ranges the warrant authorizes.",
+          "Log every query for later review."
+        ],
+        "keyBlockers": [
+          "Defense challenges to AI-assisted review."
+        ],
+        "privacyNotes": [
+          "Search must stay within the warrant’s scope. The tool must not become a way to search beyond it.",
+          "Anything the tool surfaces, including exculpatory hits, may need to be disclosed.",
+          "No vendor model training on case data."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-dems",
+      "label": "Digital Evidence Management System",
+      "type": "solution",
+      "parentId": "task-pd-digital-evidence",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "CJIS"
+      ],
+      "tags": [
+        "chain of custody"
+      ],
+      "details": {
+        "description": "Ingest evidence with automatic hashing and chain-of-custody logging, and share it with prosecutors through the system instead of on USB drives.",
+        "implementationSteps": [
+          "Adopt a DEMS.",
+          "Integrate with the RMS and prosecutor’s office.",
+          "Retire physical media sharing."
+        ],
+        "keyBlockers": [
+          "Storage cost."
+        ],
+        "privacyNotes": [
+          "Access logs are part of the chain of custody. Keep them tamper-evident."
+        ]
+      }
+    },
+    {
+      "id": "role-pd-crime-analyst",
+      "label": "Crime Analyst",
+      "type": "role",
+      "parentId": "dom-pd-investigations",
+      "childrenIds": [
+        "task-pd-crime-analysis"
+      ],
+      "summary": "Analyzes crime patterns to inform deployment."
+    },
+    {
+      "id": "task-pd-crime-analysis",
+      "label": "Deployment & Pattern Analysis",
+      "type": "scenario",
+      "parentId": "role-pd-crime-analyst",
+      "childrenIds": [
+        "sol-pd-person-prediction-hold",
+        "sol-pd-pattern-dashboards",
+        "sol-pd-tech-oversight"
+      ],
+      "tags": [
+        "crime analysis",
+        "deployment"
+      ],
+      "details": {
+        "context": "Command staff want tools that predict where and by whom crime will occur, and vendors are pitching predictive policing products.",
+        "problemStatement": "The department is under pressure to adopt tools whose bias, accuracy, and legal risk are poorly understood."
+      }
+    },
+    {
+      "id": "sol-pd-person-prediction-hold",
+      "label": "Person-Based Predictive Policing",
+      "type": "solution",
+      "parentId": "task-pd-crime-analysis",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "blocked",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "Civil Rights",
+        "28 CFR Part 23"
+      ],
+      "tags": [
+        "not recommended",
+        "predictive policing"
+      ],
+      "details": {
+        "description": "The diagnosis: not recommended. Person-based risk lists learn from historical enforcement patterns, can amplify bias, and several agencies have abandoned them.",
+        "pattern": "Diagnosis: don’t build it. Invest in place-based analysis and prevention.",
+        "implementationSteps": [
+          "Decline person-based scoring.",
+          "Redirect toward place-based analysis with transparent methods."
+        ],
+        "keyBlockers": [
+          "Legal and community-trust risk outweighs claimed benefit."
+        ],
+        "privacyNotes": [
+          "Putting people into intelligence systems without reasonable suspicion violates 28 CFR Part 23 for federally funded systems.",
+          "Lists derived from arrests reflect where enforcement happened, not only where crime occurred."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-pattern-dashboards",
+      "label": "Place-Based Pattern Dashboards",
+      "type": "solution",
+      "parentId": "task-pd-crime-analysis",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "Public Records"
+      ],
+      "tags": [
+        "dashboards",
+        "transparency"
+      ],
+      "details": {
+        "description": "Automated weekly crime-pattern dashboards from RMS and CAD, with a public-facing version.",
+        "implementationSteps": [
+          "Automate extracts from the RMS.",
+          "Publish aggregate public dashboards.",
+          "Document the methodology."
+        ],
+        "keyBlockers": [
+          "Data quality in RMS offense codes."
+        ],
+        "privacyNotes": [
+          "Geomask locations, especially for domestic violence and sexual assault, so victims can’t be located."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-tech-oversight",
+      "label": "Surveillance Technology Review Process",
+      "type": "solution",
+      "parentId": "task-pd-crime-analysis",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "regulations": [
+        "Surveillance Ordinances"
+      ],
+      "tags": [
+        "oversight",
+        "community trust"
+      ],
+      "details": {
+        "description": "Before acquiring any analytics or surveillance tool: a public use policy, community input, and an annual audit of use and impact.",
+        "implementationSteps": [
+          "Draft a use-policy template.",
+          "Hold a public comment period.",
+          "Publish an annual audit."
+        ],
+        "keyBlockers": [
+          "Slower procurement."
+        ]
+      }
+    },
+    {
+      "id": "dom-pd-communications",
+      "label": "Emergency Communications (911)",
+      "type": "domain",
+      "parentId": "ind-police",
+      "childrenIds": [
+        "role-pd-telecommunicator"
+      ],
+      "summary": "Call-taking and dispatch."
+    },
+    {
+      "id": "role-pd-telecommunicator",
+      "label": "911 Telecommunicator",
+      "type": "role",
+      "parentId": "dom-pd-communications",
+      "childrenIds": [
+        "task-pd-call-volume"
+      ],
+      "summary": "Answers emergency and non-emergency calls and dispatches units."
+    },
+    {
+      "id": "task-pd-call-volume",
+      "label": "Non-Emergency Call Volume",
+      "type": "scenario",
+      "parentId": "role-pd-telecommunicator",
+      "childrenIds": [
+        "sol-pd-nonemergency-agent",
+        "sol-pd-online-reporting",
+        "sol-pd-alt-response"
+      ],
+      "tags": [
+        "dispatch",
+        "911"
+      ],
+      "details": {
+        "context": "Understaffed dispatch centers handle large volumes of non-emergency calls, such as noise, parking, and report requests, on the same staff as 911.",
+        "problemStatement": "911 answer times slip, and staff burn out."
+      }
+    },
+    {
+      "id": "sol-pd-nonemergency-agent",
+      "label": "AI Agent for Non-Emergency Lines Only",
+      "type": "solution",
+      "parentId": "task-pd-call-volume",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "CJIS",
+        "Recording Consent"
+      ],
+      "tags": [
+        "voice agent",
+        "dispatch"
+      ],
+      "details": {
+        "description": "A voice agent answers the non-emergency line, takes minor reports, and routes callers. Any sign of an emergency transfers the call to a human immediately.",
+        "implementationSteps": [
+          "Never deploy on 911 lines.",
+          "Define immediate human-transfer triggers.",
+          "Review transcripts weekly."
+        ],
+        "keyBlockers": [
+          "Missing an emergency that was misclassified as non-emergency."
+        ],
+        "privacyNotes": [
+          "Tell callers they are talking to an automated system, and that calls are recorded.",
+          "Transcripts become records. Apply retention and CJIS controls to them."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-online-reporting",
+      "label": "Online Self-Reporting",
+      "type": "solution",
+      "parentId": "task-pd-call-volume",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "CJIS"
+      ],
+      "tags": [
+        "self-service"
+      ],
+      "details": {
+        "description": "Residents file minor property-crime and lost-property reports online, and records staff review them before they are entered in the RMS.",
+        "implementationSteps": [
+          "Choose eligible report types.",
+          "Deploy the online form.",
+          "Route submissions to records staff."
+        ],
+        "keyBlockers": [
+          "Residents expecting an in-person response."
+        ],
+        "privacyNotes": [
+          "Collect only what the report needs, and use encrypted transmission."
+        ]
+      }
+    },
+    {
+      "id": "sol-pd-alt-response",
+      "label": "Call Triage & Alternative Response",
+      "type": "solution",
+      "parentId": "task-pd-call-volume",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HIPAA"
+      ],
+      "tags": [
+        "alternative response",
+        "988"
+      ],
+      "details": {
+        "description": "Triage protocols route behavioral-health calls to crisis teams or 988 where appropriate, freeing officers and getting callers better help.",
+        "implementationSteps": [
+          "Define call types that are eligible.",
+          "Build a handoff protocol with the crisis team.",
+          "Track outcomes."
+        ],
+        "keyBlockers": [
+          "Crisis team availability, especially overnight."
+        ],
+        "privacyNotes": [
+          "Share only the minimum health information the crisis team needs. Crisis providers may be HIPAA-covered once they receive it."
+        ]
+      }
+    },
+    {
+      "id": "ind-maritime",
+      "label": "Maritime",
+      "type": "industry",
+      "parentId": null,
+      "childrenIds": [
+        "dom-mar-vessel",
+        "dom-mar-ports",
+        "dom-mar-fleet"
+      ],
+      "summary": "Shipping companies, vessel operations, and ports and terminals."
+    },
+    {
+      "id": "dom-mar-vessel",
+      "label": "Vessel Operations",
+      "type": "domain",
+      "parentId": "ind-maritime",
+      "childrenIds": [
+        "role-mar-chief-engineer",
+        "role-mar-master"
+      ],
+      "summary": "Shipboard engineering, navigation, and crew."
+    },
+    {
+      "id": "role-mar-chief-engineer",
+      "label": "Chief Engineer",
+      "type": "role",
+      "parentId": "dom-mar-vessel",
+      "childrenIds": [
+        "task-mar-maintenance"
+      ],
+      "summary": "Responsible for propulsion, machinery, and maintenance aboard."
+    },
+    {
+      "id": "task-mar-maintenance",
+      "label": "Machinery Failures & Planned Maintenance",
+      "type": "scenario",
+      "parentId": "role-mar-chief-engineer",
+      "childrenIds": [
+        "sol-mar-condition-monitoring",
+        "sol-mar-sensor-gap",
+        "sol-mar-pms-discipline"
+      ],
+      "tags": [
+        "maintenance",
+        "engineering"
+      ],
+      "details": {
+        "context": "Vessels run a planned maintenance system under the ISM Code, mostly on calendar or running-hour intervals, far from shore support and spare parts.",
+        "problemStatement": "Developing faults are missed between intervals, and an unplanned failure at sea means off-hire time, safety risk, and costly emergency repairs."
+      }
+    },
+    {
+      "id": "sol-mar-condition-monitoring",
+      "label": "Condition-Based Maintenance Alerts",
+      "type": "solution",
+      "parentId": "task-mar-maintenance",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "IMO Cyber",
+        "ISM Code"
+      ],
+      "tags": [
+        "predictive maintenance",
+        "sensors"
+      ],
+      "details": {
+        "description": "Anomaly detection on engine and machinery sensor data flags developing faults so work can be scheduled before a failure.",
+        "implementationSteps": [
+          "Start with one critical system, such as main engine or purifiers.",
+          "Historize sensor data aboard and sync summaries ashore.",
+          "Feed confirmed alerts into the maintenance system as work orders."
+        ],
+        "keyBlockers": [
+          "Sensor coverage (see gap).",
+          "Satellite bandwidth."
+        ],
+        "privacyNotes": [
+          "Connecting shipboard operational technology to shore creates cyber risk. Use one-way data flows or segmented networks, and address it in the safety management system."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-sensor-gap",
+      "label": "Machinery Data Not Historized",
+      "type": "solution",
+      "parentId": "task-mar-maintenance",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "IMO Cyber"
+      ],
+      "tags": [
+        "data",
+        "ot"
+      ],
+      "details": {
+        "description": "Sensor readings appear on alarm panels but aren’t stored, so there is no history to learn from.",
+        "implementationSteps": [
+          "Install a data logger on key systems.",
+          "Agree on a data model across the fleet.",
+          "Budget bandwidth for data sync."
+        ],
+        "keyBlockers": [
+          "Older vessels lack digital sensors."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-pms-discipline",
+      "label": "Maintenance Close-Out Discipline",
+      "type": "solution",
+      "parentId": "task-mar-maintenance",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "ISM Code"
+      ],
+      "tags": [
+        "ism",
+        "reliability"
+      ],
+      "details": {
+        "description": "Standard failure codes and required findings when closing each maintenance job, so recurring problems become visible across the fleet.",
+        "implementationSteps": [
+          "Adopt a failure-code list.",
+          "Make findings mandatory on close-out.",
+          "Hold a quarterly fleet review."
+        ],
+        "keyBlockers": [
+          "Crew time during port calls."
+        ]
+      }
+    },
+    {
+      "id": "role-mar-master",
+      "label": "Master / Deck Officer",
+      "type": "role",
+      "parentId": "dom-mar-vessel",
+      "childrenIds": [
+        "task-mar-port-clearance",
+        "task-mar-hours-of-rest"
+      ],
+      "summary": "Commands the vessel and handles port-call formalities."
+    },
+    {
+      "id": "task-mar-port-clearance",
+      "label": "Port Call Clearance Paperwork",
+      "type": "scenario",
+      "parentId": "role-mar-master",
+      "childrenIds": [
+        "sol-mar-single-window",
+        "sol-mar-doc-extract",
+        "sol-mar-crew-data-gap"
+      ],
+      "tags": [
+        "port call",
+        "compliance"
+      ],
+      "details": {
+        "context": "Each port call requires crew and passenger lists, advance notice of arrival, customs, health, and security declarations, often submitted separately to different authorities and agents.",
+        "problemStatement": "Officers retype the same data for every port, and errors lead to delays, fines, or denied entry."
+      }
+    },
+    {
+      "id": "sol-mar-single-window",
+      "label": "Submit Once via Maritime Single Window",
+      "type": "solution",
+      "parentId": "task-mar-port-clearance",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "FAL Convention",
+        "GDPR"
+      ],
+      "tags": [
+        "fal",
+        "port clearance"
+      ],
+      "details": {
+        "description": "Generate standard FAL forms from one crew and voyage data source, and submit them through the port’s national single window.",
+        "implementationSteps": [
+          "Keep one master crew list per vessel, synced with the crewing office.",
+          "Generate FAL-standard data sets.",
+          "Integrate with single windows at frequently visited ports."
+        ],
+        "keyBlockers": [
+          "Single-window formats still vary by country."
+        ],
+        "privacyNotes": [
+          "Crew lists contain passport numbers, dates of birth, and nationality. Submit only through official channels, not by email to multiple agents.",
+          "Where GDPR applies, crew data needs a lawful basis, retention limits, and processor agreements with agents."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-doc-extract",
+      "label": "Crew Document Extraction",
+      "type": "solution",
+      "parentId": "task-mar-port-clearance",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "GDPR",
+        "STCW"
+      ],
+      "tags": [
+        "documents",
+        "certificates"
+      ],
+      "details": {
+        "description": "Extract data from passports, seafarer IDs, and STCW certificates to fill crew records and flag certificates about to expire.",
+        "implementationSteps": [
+          "Process ashore in the crewing system, not on personal devices.",
+          "Verify extracted fields.",
+          "Alert on expiring certificates."
+        ],
+        "keyBlockers": [
+          "Document formats vary by flag state."
+        ],
+        "privacyNotes": [
+          "Passport and ID images are high-risk personal data. Store them encrypted, restrict access, and use a processor agreement with any vendor."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-crew-data-gap",
+      "label": "Crew Data Scattered Across Spreadsheets",
+      "type": "solution",
+      "parentId": "task-mar-port-clearance",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "GDPR"
+      ],
+      "tags": [
+        "master data"
+      ],
+      "details": {
+        "description": "Each vessel keeps its own crew spreadsheets, which drift from the crewing office’s records, so automated submission would propagate errors.",
+        "implementationSteps": [
+          "Name one system of record for crew data.",
+          "Sync it with vessels at every crew change.",
+          "Delete stale local copies."
+        ],
+        "keyBlockers": [
+          "Connectivity and crew-change turnover."
+        ],
+        "privacyNotes": [
+          "Every stale copy is another place personal data can leak from."
+        ]
+      }
+    },
+    {
+      "id": "task-mar-hours-of-rest",
+      "label": "Hours of Rest Compliance",
+      "type": "scenario",
+      "parentId": "role-mar-master",
+      "childrenIds": [
+        "sol-mar-rest-planner",
+        "sol-mar-watch-redesign"
+      ],
+      "tags": [
+        "crew welfare",
+        "fatigue"
+      ],
+      "details": {
+        "context": "MLC 2006 and STCW set minimum rest hours, and port state control inspects rest records. Port calls and drills compress schedules.",
+        "problemStatement": "Records are often filled in afterwards to look compliant, which hides real fatigue risk and invites deficiencies."
+      }
+    },
+    {
+      "id": "sol-mar-rest-planner",
+      "label": "Rest-Hours Planning Tool",
+      "type": "solution",
+      "parentId": "task-mar-hours-of-rest",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "MLC 2006",
+        "STCW"
+      ],
+      "tags": [
+        "fatigue",
+        "mlc"
+      ],
+      "details": {
+        "description": "Plan work and watches in a tool that warns before a schedule would break rest rules, and record actual hours as they happen.",
+        "implementationSteps": [
+          "Adopt a tool that encodes MLC and STCW rules.",
+          "Plan port-call work in advance.",
+          "Review exceptions with the master."
+        ],
+        "keyBlockers": [
+          "A culture of adjusting records after the fact."
+        ],
+        "privacyNotes": [
+          "Rest records are personal data. Use them for safety and compliance, not as covert performance surveillance, and say so to crews."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-watch-redesign",
+      "label": "Watch & Port-Call Manning Redesign",
+      "type": "solution",
+      "parentId": "task-mar-hours-of-rest",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "STCW"
+      ],
+      "tags": [
+        "manning"
+      ],
+      "details": {
+        "description": "Redesign watch rotations and port-call work plans, adding shore support where needed so rest rules can be kept honestly.",
+        "implementationSteps": [
+          "Analyze actual work during port calls.",
+          "Adjust rotations.",
+          "Add shore or riding-crew support for peak periods."
+        ],
+        "keyBlockers": [
+          "Crew cost."
+        ]
+      }
+    },
+    {
+      "id": "dom-mar-ports",
+      "label": "Ports & Terminals",
+      "type": "domain",
+      "parentId": "ind-maritime",
+      "childrenIds": [
+        "role-mar-terminal-planner",
+        "role-mar-fso"
+      ],
+      "summary": "Terminal operations and port facility security."
+    },
+    {
+      "id": "role-mar-terminal-planner",
+      "label": "Terminal Operations Planner",
+      "type": "role",
+      "parentId": "dom-mar-ports",
+      "childrenIds": [
+        "task-mar-berth-planning"
+      ],
+      "summary": "Plans berths, cranes, and yard space."
+    },
+    {
+      "id": "task-mar-berth-planning",
+      "label": "Berth Planning with Unreliable ETAs",
+      "type": "scenario",
+      "parentId": "role-mar-terminal-planner",
+      "childrenIds": [
+        "sol-mar-eta-prediction",
+        "sol-mar-jit-arrival"
+      ],
+      "tags": [
+        "berth planning",
+        "terminal"
+      ],
+      "details": {
+        "context": "Vessels frequently arrive off-schedule. Planners juggle berth windows, crane gangs, and yard space from carrier emails and phone calls.",
+        "problemStatement": "Late ETA changes leave cranes idle and ships waiting at anchor, burning fuel and adding emissions."
+      }
+    },
+    {
+      "id": "sol-mar-eta-prediction",
+      "label": "AI ETA Prediction",
+      "type": "solution",
+      "parentId": "task-mar-berth-planning",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "ais",
+        "prediction"
+      ],
+      "details": {
+        "description": "Predict arrival times from AIS positions, weather, and port congestion, and update the berth plan automatically.",
+        "implementationSteps": [
+          "Ingest AIS and weather feeds.",
+          "Train on historical arrivals.",
+          "Show predicted versus declared ETA to planners."
+        ],
+        "keyBlockers": [
+          "Carrier schedule data quality."
+        ],
+        "privacyNotes": [
+          "AIS positions are broadcast publicly, but carrier commercial data needs data-sharing agreements."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-jit-arrival",
+      "label": "Just-in-Time Arrival Agreements",
+      "type": "solution",
+      "parentId": "task-mar-berth-planning",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "jit",
+        "emissions"
+      ],
+      "details": {
+        "description": "Agree with carriers to slow-steam toward a confirmed berth time instead of racing to wait at anchor.",
+        "implementationSteps": [
+          "Pilot with one carrier service.",
+          "Share berth availability early.",
+          "Measure anchorage time and fuel saved."
+        ],
+        "keyBlockers": [
+          "Charter-party terms that reward arriving early."
+        ]
+      }
+    },
+    {
+      "id": "role-mar-fso",
+      "label": "Facility Security Officer",
+      "type": "role",
+      "parentId": "dom-mar-ports",
+      "childrenIds": [
+        "task-mar-gate-access"
+      ],
+      "summary": "Implements the port facility security plan."
+    },
+    {
+      "id": "task-mar-gate-access",
+      "label": "Gate Access & Credential Checks",
+      "type": "scenario",
+      "parentId": "role-mar-fso",
+      "childrenIds": [
+        "sol-mar-gate-automation",
+        "sol-mar-video-analytics",
+        "sol-mar-security-plan-gap"
+      ],
+      "tags": [
+        "security",
+        "access control"
+      ],
+      "details": {
+        "context": "Truck and personnel gates require credential verification for secure areas, and queues back up at peak times.",
+        "problemStatement": "Manual checks are slow and error-prone, creating both congestion and security gaps."
+      }
+    },
+    {
+      "id": "sol-mar-gate-automation",
+      "label": "Automated Credential Verification at Gates",
+      "type": "solution",
+      "parentId": "task-mar-gate-access",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "TWIC",
+        "ISPS/MTSA"
+      ],
+      "tags": [
+        "access control",
+        "twic"
+      ],
+      "details": {
+        "description": "Electronic credential readers and a truck appointment system verify access automatically, and exceptions go to guards.",
+        "implementationSteps": [
+          "Deploy readers at secure-area entry points.",
+          "Integrate with the appointment system.",
+          "Define a manual fallback."
+        ],
+        "keyBlockers": [
+          "Reader hardware in harsh environments."
+        ],
+        "privacyNotes": [
+          "Credential reads and access logs are personal data and security records. Set retention and restrict access."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-video-analytics",
+      "label": "Perimeter Video Analytics",
+      "type": "solution",
+      "parentId": "task-mar-gate-access",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "SSI",
+        "Biometric Privacy"
+      ],
+      "tags": [
+        "video",
+        "perimeter"
+      ],
+      "details": {
+        "description": "Detect perimeter intrusions and unattended objects from existing cameras, without identifying individuals.",
+        "implementationSteps": [
+          "Use detection only, with no face recognition.",
+          "Tune for false alarms caused by weather and wildlife.",
+          "Route alerts to the security desk."
+        ],
+        "keyBlockers": [
+          "High false-alarm rates at waterfront sites."
+        ],
+        "privacyNotes": [
+          "Camera layouts and coverage gaps are security-sensitive information. Share them only with vendors who have a need to know.",
+          "Facial recognition triggers biometric privacy laws in some states. Avoid it."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-security-plan-gap",
+      "label": "Security Plan Lacks a Cyber Annex",
+      "type": "solution",
+      "parentId": "task-mar-gate-access",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "USCG Cyber Rule",
+        "SSI",
+        "ISPS/MTSA"
+      ],
+      "tags": [
+        "cybersecurity",
+        "security plan"
+      ],
+      "details": {
+        "description": "The facility security plan predates connected gate systems and cameras, and has no cybersecurity plan as the new rule requires.",
+        "implementationSteps": [
+          "Designate a cybersecurity officer.",
+          "Assess connected systems.",
+          "Write and submit the cybersecurity plan."
+        ],
+        "keyBlockers": [
+          "Specialist cyber skills are scarce at terminals."
+        ],
+        "privacyNotes": [
+          "Security and cybersecurity plans are SSI. Mark them, control access, and never paste them into general-purpose AI tools."
+        ]
+      }
+    },
+    {
+      "id": "dom-mar-fleet",
+      "label": "Fleet Performance & Compliance",
+      "type": "domain",
+      "parentId": "ind-maritime",
+      "childrenIds": [
+        "role-mar-emissions-manager"
+      ],
+      "summary": "Shore-side fleet management, emissions, and environmental compliance."
+    },
+    {
+      "id": "role-mar-emissions-manager",
+      "label": "Fleet Performance / Emissions Manager",
+      "type": "role",
+      "parentId": "dom-mar-fleet",
+      "childrenIds": [
+        "task-mar-emissions-reporting"
+      ],
+      "summary": "Monitors fuel, emissions, and carbon-intensity ratings."
+    },
+    {
+      "id": "task-mar-emissions-reporting",
+      "label": "Emissions Reporting Across Regimes",
+      "type": "scenario",
+      "parentId": "role-mar-emissions-manager",
+      "childrenIds": [
+        "sol-mar-noon-reports",
+        "sol-mar-anomaly-ai",
+        "sol-mar-fuel-meter-gap"
+      ],
+      "tags": [
+        "emissions",
+        "decarbonization"
+      ],
+      "details": {
+        "context": "Vessels report fuel consumption and emissions to IMO DCS, EU MRV and ETS, and CII ratings, mostly from manually typed noon reports and bunker delivery notes.",
+        "problemStatement": "Errors and mismatches between regimes risk verifier rejections, penalties, and wrong EU ETS allowance purchases."
+      }
+    },
+    {
+      "id": "sol-mar-noon-reports",
+      "label": "Digital Noon Reports with Validation",
+      "type": "solution",
+      "parentId": "task-mar-emissions-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "EU MRV/ETS",
+        "IMO DCS/CII"
+      ],
+      "tags": [
+        "noon reports",
+        "emissions"
+      ],
+      "details": {
+        "description": "Replace emailed spreadsheets with validated digital noon reports that feed MRV, DCS, and CII calculations automatically.",
+        "implementationSteps": [
+          "Adopt a digital reporting tool with range checks.",
+          "Integrate with the verifier’s submission.",
+          "Reconcile against bunker delivery notes."
+        ],
+        "keyBlockers": [
+          "Crew adoption."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-anomaly-ai",
+      "label": "AI Anomaly Checks on Fuel Data",
+      "type": "solution",
+      "parentId": "task-mar-emissions-reporting",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "EU MRV/ETS"
+      ],
+      "tags": [
+        "anomaly detection"
+      ],
+      "details": {
+        "description": "Flag implausible fuel, distance, or speed entries against vessel models and weather before submission.",
+        "implementationSteps": [
+          "Build vessel performance baselines.",
+          "Flag outliers for the vessel to confirm.",
+          "Track the correction rate."
+        ],
+        "keyBlockers": [
+          "Baseline quality on older vessels."
+        ]
+      }
+    },
+    {
+      "id": "sol-mar-fuel-meter-gap",
+      "label": "No Fuel Flow Meters",
+      "type": "solution",
+      "parentId": "task-mar-emissions-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "EU MRV/ETS"
+      ],
+      "tags": [
+        "metering",
+        "data quality"
+      ],
+      "details": {
+        "description": "Consumption comes from tank soundings, so reported emissions, and the carbon cost that follows, are uncertain.",
+        "implementationSteps": [
+          "Prioritize flow meters on high-consumption vessels.",
+          "Update the monitoring plan.",
+          "Calibrate meters against soundings."
+        ],
+        "keyBlockers": [
+          "Capital cost and dry-dock timing."
         ]
       }
     }

@@ -10,6 +10,7 @@ interface SearchDoc {
   type: AtlasNode['type'];
   category: string;
   solutionCategory?: SolutionCategory;
+  regulations: string[];
   path: string;
   text: string;
   tags: string[];
@@ -35,8 +36,12 @@ export function SearchModal({ index, onSelect, onClose }: Props) {
       id: n.id,
       label: n.label,
       type: n.type,
-      category: n.type === 'solution' ? `${n.solutionCategory} ${n.dataSensitivity}` : '',
+      category:
+        n.type === 'solution'
+          ? [n.solutionCategory, n.dataSensitivity, ...(n.regulations ?? []).flatMap((r) => [r, index.regulations[r]?.name ?? ''])].join(' ')
+          : '',
       solutionCategory: n.type === 'solution' ? n.solutionCategory : undefined,
+      regulations: n.type === 'solution' ? (n.regulations ?? []) : [],
       path: index
         .pathTo(n.id)
         .slice(0, -1)
@@ -73,8 +78,23 @@ export function SearchModal({ index, onSelect, onClose }: Props) {
     // Strip extended-search operators (=, ', !, ^, $, |) so input is always a plain fuzzy match.
     const plain = q.replace(/[='!^$|]/g, ' ').trim();
     const hits = plain ? strict.search(plain, { limit: MAX_RESULTS }) : [];
-    return (hits.length ? hits : loose.search(q, { limit: MAX_RESULTS })).map((r) => r.item);
-  }, [query, strict, loose, docs]);
+    const fuzzy = (hits.length ? hits : loose.search(q, { limit: MAX_RESULTS })).map((r) => r.item);
+
+    // Acronyms like "SSI" or "CJIS" are too short for fuzzy matching (they hit
+    // "acce-ssi-bility"), so a query naming a regulation lists its outcomes first.
+    const lower = q.toLowerCase();
+    const reg = Object.keys(index.regulations).find(
+      (code) => code.toLowerCase() === lower || index.regulations[code].name.toLowerCase() === lower,
+    );
+    if (!reg) return fuzzy;
+    // Fuzzy scores are meaningless for short acronyms, so use exact whole-word
+    // mentions instead: outcomes tagged with the regulation, then any node whose
+    // text names it.
+    const tagged = docs.filter((d) => d.regulations.includes(reg));
+    const word = new RegExp(`\\b${lower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    const mentions = docs.filter((d) => !tagged.includes(d) && word.test(`${d.label} ${d.text}`));
+    return [...tagged, ...mentions].slice(0, MAX_RESULTS);
+  }, [query, strict, loose, docs, index]);
 
   useEffect(() => setActive(0), [query]);
   useEffect(() => inputRef.current?.focus(), []);

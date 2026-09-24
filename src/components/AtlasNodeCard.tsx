@@ -29,7 +29,9 @@ export const NodeActionsContext = createContext<NodeActions | null>(null);
 
 function describe(n: AtlasNode, expanded: boolean, counts: CategoryCounts) {
   if (n.type === 'solution')
-    return `${n.label}. ${n.solutionCategory} outcome, ${READINESS[n.readiness].label}, ${SENSITIVITY[n.dataSensitivity].label}.`;
+    return `${n.label}. ${n.solutionCategory} outcome, ${READINESS[n.readiness].label}, ${SENSITIVITY[n.dataSensitivity].label}${
+      n.regulations?.length ? ` (${n.regulations.join(', ')})` : ''
+    }.`;
   const total = SOLUTION_CATEGORIES.reduce((s, k) => s + counts[k], 0);
   return `${n.label}. ${TIER_LABEL[n.type]}, ${n.childrenIds.length} ${n.childrenIds.length === 1 ? 'child' : 'children'}, ${total} outcomes${expanded ? '' : ', collapsed'}.`;
 }
@@ -74,13 +76,13 @@ function AtlasNodeCardImpl({ data }: NodeProps<AtlasFlowNode>) {
             <span className={`rounded px-1.5 py-0.5 text-[10px] font-semibold ${CATEGORY_STYLE[n.solutionCategory].badge}`}>
               {CATEGORY_STYLE[n.solutionCategory].short}
             </span>
-            {(n.dataSensitivity === 'ferpa' || n.dataSensitivity === 'restricted') && (
+            {(n.dataSensitivity === 'regulated' || n.dataSensitivity === 'restricted') && (
               <span
                 title={SENSITIVITY[n.dataSensitivity].label}
-                className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-semibold ${SENSITIVITY[n.dataSensitivity].badge}`}
+                className={`flex min-w-0 items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-semibold ${SENSITIVITY[n.dataSensitivity].badge}`}
               >
-                <ShieldIcon />
-                {SENSITIVITY[n.dataSensitivity].short}
+                <ShieldIcon className="h-2.5 w-2.5 shrink-0" />
+                <span className="truncate">{n.regulations?.[0] ?? SENSITIVITY[n.dataSensitivity].short}</span>
               </span>
             )}
           </>

@@ -74,21 +74,21 @@ export const SENSITIVITY: Record<DataSensitivity, { label: string; short: string
     blurb: 'Institutional operations data without student-identifiable records. Normal data-governance approval applies.',
     badge: 'bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-100',
   },
-  ferpa: {
-    label: 'FERPA education records',
-    short: 'FERPA',
+  regulated: {
+    label: 'Regulated personal data',
+    short: 'Regulated',
     blurb:
-      'Touches personally identifiable information from education records. Vendors need a “school official” agreement, access is limited to legitimate educational interest, and directory-information opt-outs must be honored.',
+      'Personal data protected by a sector law such as FERPA, HIPAA, or CJIS. Access, sharing, and vendor use are legally constrained, and vendors usually need a signed agreement before they can touch it.',
     badge: 'bg-amber-100 text-amber-900 dark:bg-amber-900/60 dark:text-amber-100',
   },
   restricted: {
     label: 'Restricted / highly sensitive',
     short: 'Restricted',
     blurb:
-      'FERPA plus stricter rules: SSNs, FAFSA federal tax information, GLBA-covered financial aid data, health or counseling records, disability, or Title IX records. Keep out of general-purpose AI tools unless explicitly approved.',
+      'The most protected data within its regime, such as SSNs, federal tax information, substance-use or psychotherapy records, juvenile or victim records, or security plans. Keep it out of general-purpose AI tools unless explicitly approved.',
     badge: 'bg-rose-100 text-rose-900 dark:bg-rose-900/60 dark:text-rose-100',
   },
 };
 
 export const PRIVACY_DISCLAIMER =
-  'Planning guidance only, not legal advice. Confirm with your registrar, privacy office, and general counsel before handling student data.';
+  'Planning guidance only, not legal advice. Confirm with your privacy, security, or compliance officer and legal counsel before handling protected data.';

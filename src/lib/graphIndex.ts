@@ -1,4 +1,4 @@
-import type { AtlasNode, SolutionCategory, Taxonomy } from '../types';
+import type { AtlasNode, Regulation, SolutionCategory, Taxonomy } from '../types';
 
 export const SOLUTION_CATEGORIES: SolutionCategory[] = [
   'AI Solution',
@@ -23,6 +23,7 @@ export interface GraphIndex {
   /** Solution outcomes anywhere beneath a node, by category. */
   outcomeCounts: Map<string, CategoryCounts>;
   branchIds: string[];
+  regulations: Record<string, Regulation>;
 }
 
 function emptyCounts(): CategoryCounts {
@@ -77,7 +78,7 @@ export function buildIndex(taxonomy: Taxonomy): GraphIndex {
 
   const branchIds = taxonomy.nodes.filter((n) => n.childrenIds.length > 0).map((n) => n.id);
 
-  return { byId, rootIds, depth, pathTo, siblingsOf, outcomeCounts, branchIds };
+  return { byId, rootIds, depth, pathTo, siblingsOf, outcomeCounts, branchIds, regulations: taxonomy.regulations ?? {} };
 }
 
 /** Nodes currently rendered: roots plus the children of every expanded, visible node. */
