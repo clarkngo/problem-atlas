@@ -65,13 +65,13 @@ export const SENSITIVITY: Record<DataSensitivity, { label: string; short: string
   public: {
     label: 'Public data',
     short: 'Public',
-    blurb: 'Published catalog, policy, or aggregate data. No student records involved.',
+    blurb: 'Published or aggregate data, such as catalogs, policies, or statistics. No personal records involved.',
     badge: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300',
   },
   internal: {
     label: 'Internal data',
     short: 'Internal',
-    blurb: 'Institutional operations data without student-identifiable records. Normal data-governance approval applies.',
+    blurb: 'Operational data without personal or protected records. Normal data-governance approval applies.',
     badge: 'bg-sky-100 text-sky-900 dark:bg-sky-900/60 dark:text-sky-100',
   },
   regulated: {

@@ -1,6 +1,6 @@
 # Problem Atlas
 
-An interactive, keyboard-first map for diagnosing operational problems in **higher education, healthcare, police departments, and maritime**. Walk from an industry to a department, a role, and a concrete task scenario, and land on an outcome that says what kind of fix the problem needs:
+An interactive, keyboard-first map for diagnosing operational problems in **higher education, healthcare, police departments, maritime, and nonprofit affordable housing**. Walk from an industry to a department, a role, and a concrete task scenario, and land on an outcome that says what kind of fix the problem needs:
 
 | Outcome | Meaning |
 | --- | --- |
@@ -9,7 +9,7 @@ An interactive, keyboard-first map for diagnosing operational problems in **high
 | **Automation Fit** | Deterministic, rule-based work for integrations, webhooks, or scheduled jobs. |
 | **Requirements Gap** | Something must exist first (clean data, an API, a policy or contract) before any fix will hold. |
 
-Every outcome also carries a **data sensitivity** level, the **regulations** that govern it (FERPA, HIPAA, 42 CFR Part 2, CJIS, SSI, MLC 2006, …), and privacy notes. In these sectors, whether an idea is feasible depends on those rules as much as on technology. Some outcomes are marked **Blocked** with a “don’t build this yet” diagnosis.
+Every outcome also carries a **data sensitivity** level, the **regulations** that govern it (FERPA, HIPAA, 42 CFR Part 2, CJIS, SSI, Fair Housing Act, ECOA, …), and privacy notes. In these sectors, whether an idea is feasible depends on those rules as much as on technology. Some outcomes are marked **Blocked** with a “don’t build this yet” diagnosis.
 
 Live site: https://clarkngo.github.io/problem-atlas/
 
@@ -89,7 +89,7 @@ The file also has a top-level `regulations` glossary, which the drawer uses to e
 | --- | --- |
 | `public` | Published or aggregate data. No personal records. |
 | `internal` | Operational data with no personal or protected records. |
-| `regulated` | Personal data protected by a sector law: student education records (FERPA), PHI (HIPAA), criminal justice information (CJIS), crew personal data (GDPR, MLC). |
+| `regulated` | Personal data protected by a sector law: student education records (FERPA), PHI (HIPAA), criminal justice information (CJIS), crew personal data (GDPR, MLC), mortgage applicant and borrower data (GLBA, FCRA). |
 | `restricted` | The most protected data within a regime: SSNs, federal tax information, substance-use or psychotherapy records, juvenile or victim records, security plans (SSI). |
 
 > **Not legal advice.** The privacy notes are planning guidance for spotting risk early. Confirm specifics with your privacy, security, or compliance officer and legal counsel before handling protected data.
