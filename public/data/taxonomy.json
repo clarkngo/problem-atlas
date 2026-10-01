@@ -6,7 +6,7 @@
     },
     "GLBA": {
       "name": "Gramm-Leach-Bliley Act Safeguards Rule",
-      "summary": "Requires a written information-security program (risk assessment, MFA, encryption, vendor oversight) for customer financial information, including student financial aid data."
+      "summary": "Requires a written information-security program (risk assessment, MFA, encryption, vendor oversight) for customer financial information, such as student financial aid data or mortgage applicant and borrower data."
     },
     "IRS FTI": {
       "name": "Federal Tax Information",
@@ -147,6 +147,42 @@
     "IMO DCS/CII": {
       "name": "IMO Data Collection System & CII",
       "summary": "Annual fuel-oil consumption reporting and the Carbon Intensity Indicator rating under MARPOL Annex VI."
+    },
+    "Fair Housing Act": {
+      "name": "Fair Housing Act",
+      "summary": "Prohibits discrimination in housing and residential real estate transactions based on race, color, religion, sex, national origin, familial status, or disability, and requires reasonable accommodations for people with disabilities."
+    },
+    "ECOA": {
+      "name": "Equal Credit Opportunity Act (Reg B)",
+      "summary": "Prohibits credit discrimination on protected bases, and requires notices giving specific reasons when credit is denied. Using a complex model doesn’t excuse a lender from stating those reasons."
+    },
+    "FCRA": {
+      "name": "Fair Credit Reporting Act",
+      "summary": "Credit reports may be pulled only for a permissible purpose. Applicants denied because of a report must get an adverse action notice, and report data must be disposed of securely."
+    },
+    "RESPA/TILA": {
+      "name": "Mortgage servicing rules (RESPA/Reg X, TILA/Reg Z)",
+      "summary": "Federal rules on mortgage disclosures, periodic statements, escrow, error resolution, and early intervention with delinquent borrowers. Small servicers and some nonprofits are exempt from parts, so confirm which apply."
+    },
+    "HUD Grant Rules": {
+      "name": "HUD HOME and CDBG requirements",
+      "summary": "Federally funded housing assistance generally serves households at or below 80% of area median income, with affordability periods, income verification, recordkeeping, and beneficiary reporting."
+    },
+    "IRS Substantiation": {
+      "name": "IRS charitable contribution substantiation",
+      "summary": "Donors need a written acknowledgment for any single gift of $250 or more, and gifts over $75 where the donor receives something in return need a disclosure of its value."
+    },
+    "COPPA": {
+      "name": "Children’s Online Privacy Protection Act",
+      "summary": "Collecting personal information online from children under 13 requires verifiable parental consent."
+    },
+    "State Breach Laws": {
+      "name": "State data breach notification laws",
+      "summary": "Every US state requires notifying people when a breach exposes personal information such as SSNs or financial account numbers."
+    },
+    "OSHA": {
+      "name": "Occupational Safety and Health Act",
+      "summary": "Sets workplace safety standards (fall protection, PPE, recordkeeping) for employees. Volunteers often fall outside OSHA, but staff on the same site don’t, so many organizations apply the same standards to everyone."
     }
   },
   "nodes": [
@@ -4571,6 +4607,1249 @@
         ],
         "keyBlockers": [
           "Capital cost and dry-dock timing."
+        ]
+      }
+    },
+    {
+      "id": "ind-nonprofit-housing",
+      "label": "Nonprofit Affordable Housing",
+      "type": "industry",
+      "parentId": null,
+      "childrenIds": [
+        "dom-nph-homeowner",
+        "dom-nph-construction",
+        "dom-nph-volunteers",
+        "dom-nph-restore",
+        "dom-nph-development"
+      ],
+      "summary": "Homebuilding and home-repair nonprofits that sell affordable homes to partner families, service their mortgages, run donated-goods ReStores, and depend on volunteers, donors, and housing grants. This is the affiliate model used by organizations such as Habitat for Humanity."
+    },
+    {
+      "id": "dom-nph-homeowner",
+      "label": "Homeowner Services",
+      "type": "domain",
+      "parentId": "ind-nonprofit-housing",
+      "childrenIds": [
+        "role-nph-family-services",
+        "role-nph-mortgage-servicing"
+      ],
+      "summary": "Partner-family selection, homebuyer support, and mortgage servicing."
+    },
+    {
+      "id": "role-nph-family-services",
+      "label": "Family Services Coordinator",
+      "type": "role",
+      "parentId": "dom-nph-homeowner",
+      "childrenIds": [
+        "task-nph-applications",
+        "task-nph-sweat-equity"
+      ],
+      "summary": "Guides applicants from inquiry through selection, sweat equity, and closing."
+    },
+    {
+      "id": "task-nph-applications",
+      "label": "Homeownership Application Intake & Eligibility",
+      "type": "scenario",
+      "parentId": "role-nph-family-services",
+      "childrenIds": [
+        "sol-nph-application-portal",
+        "sol-nph-income-extract",
+        "sol-nph-selection-criteria",
+        "sol-nph-ai-ranking-hold"
+      ],
+      "tags": [
+        "applications",
+        "eligibility"
+      ],
+      "details": {
+        "context": "Each application round brings far more applicants than homes. Staff check income, credit, need, and willingness to partner, using paper packets and stacks of financial documents.",
+        "problemStatement": "Reviews take months, applicants drop out while waiting, and inconsistent review creates fair-housing and fair-lending risk."
+      }
+    },
+    {
+      "id": "sol-nph-application-portal",
+      "label": "Online Application with Document Checklist",
+      "type": "solution",
+      "parentId": "task-nph-applications",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "GLBA",
+        "State Breach Laws"
+      ],
+      "tags": [
+        "portal",
+        "intake"
+      ],
+      "details": {
+        "description": "A multilingual online application with a secure document upload and a live checklist, plus reminders, so files arrive complete.",
+        "implementationSteps": [
+          "Offer the application in the languages your community speaks, with a paper and in-person option.",
+          "Show each applicant exactly which documents are still missing.",
+          "Send reminders that say only “items outstanding, log in to view.”"
+        ],
+        "keyBlockers": [
+          "Applicants without internet access or scanners need staff help or drop-in hours."
+        ],
+        "privacyNotes": [
+          "Applicant files hold SSNs, tax returns, pay stubs, bank statements, and credit reports. Store them encrypted with MFA and role-based access, and never in email threads or shared drives.",
+          "Choose a vendor that will sign data-protection terms and supports encryption at rest and in transit."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-income-extract",
+      "label": "Income Document Extraction",
+      "type": "solution",
+      "parentId": "task-nph-applications",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "GLBA",
+        "HUD Grant Rules"
+      ],
+      "tags": [
+        "documents",
+        "income verification"
+      ],
+      "details": {
+        "description": "Extract income figures from pay stubs, tax returns, and benefit letters into a draft income calculation that staff verify.",
+        "implementationSteps": [
+          "Run it inside the case-management system or an approved private deployment.",
+          "Calculate household income against area median income limits.",
+          "Staff confirm every figure before it’s used for eligibility."
+        ],
+        "keyBlockers": [
+          "Gig and cash income is hard to document and extract."
+        ],
+        "privacyNotes": [
+          "Applicant files hold SSNs, tax returns, pay stubs, bank statements, and credit reports. Store them encrypted with MFA and role-based access, and never in email threads or shared drives.",
+          "Tax returns and SSNs must never be pasted into consumer AI tools.",
+          "If HOME or CDBG funds are involved, keep the income-verification file the grant rules require."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-selection-criteria",
+      "label": "Written, Consistent Selection Criteria",
+      "type": "solution",
+      "parentId": "task-nph-applications",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "Fair Housing Act",
+        "ECOA",
+        "FCRA"
+      ],
+      "tags": [
+        "fair housing",
+        "selection"
+      ],
+      "details": {
+        "description": "Publish the criteria (need, ability to pay, willingness to partner), score every applicant the same way, and document each decision.",
+        "implementationSteps": [
+          "Write criteria with counsel and publish them.",
+          "Use a scoring sheet that two reviewers complete independently.",
+          "Send adverse action notices with specific reasons to denied applicants."
+        ],
+        "keyBlockers": [
+          "Committee members used to discretionary judgments."
+        ],
+        "privacyNotes": [
+          "Credit reports may be pulled only with the applicant’s authorization for this purpose, and denials based on them need FCRA adverse action notices.",
+          "Track outcomes by protected class (in aggregate) to catch disparate impact early."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-ai-ranking-hold",
+      "label": "AI Ranking of Applicants",
+      "type": "solution",
+      "parentId": "task-nph-applications",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "blocked",
+      "dataSensitivity": "restricted",
+      "regulations": [
+        "ECOA",
+        "Fair Housing Act",
+        "FCRA"
+      ],
+      "tags": [
+        "not recommended",
+        "fair lending"
+      ],
+      "details": {
+        "description": "The idea is to have a model score or rank applicants for selection. The diagnosis: don’t. Selection is a credit and housing decision, and opaque scoring invites discrimination claims and can’t produce the specific denial reasons the law requires.",
+        "pattern": "Diagnosis: keep selection human, with written criteria.",
+        "implementationSteps": [
+          "Use automation for paperwork, not for deciding who gets a home.",
+          "If any score is ever used, it must be explainable, validated for disparate impact, and reviewed by counsel."
+        ],
+        "keyBlockers": [
+          "Fair-lending and fair-housing liability."
+        ],
+        "privacyNotes": [
+          "Models trained on past selections inherit past bias, and features like zip code can act as proxies for race."
+        ]
+      }
+    },
+    {
+      "id": "task-nph-sweat-equity",
+      "label": "Sweat Equity Hour Tracking",
+      "type": "scenario",
+      "parentId": "role-nph-family-services",
+      "childrenIds": [
+        "sol-nph-hours-checkin",
+        "sol-nph-sweat-equity-policy"
+      ],
+      "tags": [
+        "sweat equity",
+        "partner families"
+      ],
+      "details": {
+        "context": "Partner families commit hundreds of hours of sweat equity on build sites, at the ReStore, and in homebuyer classes. Hours are logged on paper sign-in sheets.",
+        "problemStatement": "Families can’t see their progress, staff spend hours reconciling sheets, and disputes over hours delay closings."
+      }
+    },
+    {
+      "id": "sol-nph-hours-checkin",
+      "label": "Mobile Check-In for Sweat Equity Hours",
+      "type": "solution",
+      "parentId": "task-nph-sweat-equity",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "sweat equity",
+        "check-in"
+      ],
+      "details": {
+        "description": "Families check in and out with a QR code or a site leader’s tablet, and see their running total in a portal.",
+        "implementationSteps": [
+          "Put QR check-in at each site and class.",
+          "Let site leaders approve hours.",
+          "Show families their progress toward the requirement."
+        ],
+        "keyBlockers": [
+          "Families without smartphones need a tablet option."
+        ],
+        "privacyNotes": [
+          "Check-ins record names and locations. Use them only for hour tracking."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-sweat-equity-policy",
+      "label": "Sweat Equity Policy with Accommodations",
+      "type": "solution",
+      "parentId": "task-nph-sweat-equity",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "Fair Housing Act"
+      ],
+      "tags": [
+        "policy",
+        "accommodations"
+      ],
+      "details": {
+        "description": "A written policy on what counts toward sweat equity, including non-construction options for families with disabilities, caregiving duties, or health limits.",
+        "implementationSteps": [
+          "List qualifying activities beyond construction: classes, ReStore shifts, office work.",
+          "Publish a reasonable-accommodation request process.",
+          "Apply the policy the same way for every family."
+        ],
+        "keyBlockers": [
+          "A culture that treats construction hours as the “real” hours."
+        ],
+        "privacyNotes": [
+          "Accommodation requests can reveal disability or health information. Store them separately, and share only the approved accommodation with site staff."
+        ]
+      }
+    },
+    {
+      "id": "role-nph-mortgage-servicing",
+      "label": "Mortgage Servicing Coordinator",
+      "type": "role",
+      "parentId": "dom-nph-homeowner",
+      "childrenIds": [
+        "task-nph-delinquency"
+      ],
+      "summary": "Services the affordable mortgages the organization holds."
+    },
+    {
+      "id": "task-nph-delinquency",
+      "label": "Mortgage Delinquency & Hardship",
+      "type": "scenario",
+      "parentId": "role-nph-mortgage-servicing",
+      "childrenIds": [
+        "sol-nph-early-alerts",
+        "sol-nph-hardship-workout",
+        "sol-nph-servicing-compliance-gap"
+      ],
+      "tags": [
+        "mortgage",
+        "delinquency"
+      ],
+      "details": {
+        "context": "The organization holds and services its homeowners’ mortgages. When a homeowner falls behind, staff notice weeks late, from a spreadsheet of payments.",
+        "problemStatement": "Late outreach turns short-term hardships into defaults, and putting the homeowner at risk of losing the home defeats the mission."
+      }
+    },
+    {
+      "id": "sol-nph-early-alerts",
+      "label": "Payment Monitoring & Early Outreach Alerts",
+      "type": "solution",
+      "parentId": "task-nph-delinquency",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "RESPA/TILA",
+        "GLBA",
+        "TCPA"
+      ],
+      "tags": [
+        "servicing",
+        "early intervention"
+      ],
+      "details": {
+        "description": "Flag missed or late payments the day after the due date, and create an outreach task for the coordinator, with optional reminders and autopay enrollment.",
+        "implementationSteps": [
+          "Move payment records into a loan-servicing system.",
+          "Set alert rules for missed payments.",
+          "Offer autopay and opt-in text reminders."
+        ],
+        "keyBlockers": [
+          "Legacy loans tracked in spreadsheets."
+        ],
+        "privacyNotes": [
+          "Borrower payment data is GLBA-covered customer financial information.",
+          "Get documented consent before sending automated texts, and keep loan details out of message previews."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-hardship-workout",
+      "label": "Standard Hardship Workout Program",
+      "type": "solution",
+      "parentId": "task-nph-delinquency",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "RESPA/TILA",
+        "ECOA"
+      ],
+      "tags": [
+        "loss mitigation",
+        "homeowner support"
+      ],
+      "details": {
+        "description": "A documented set of hardship options (payment plans, temporary reductions, deferrals) offered to every eligible homeowner on the same terms.",
+        "implementationSteps": [
+          "Define options and eligibility with counsel.",
+          "Contact homeowners early, as soon as a payment is missed.",
+          "Apply the same criteria to everyone, and document each decision."
+        ],
+        "keyBlockers": [
+          "Board concerns about cash flow."
+        ],
+        "privacyNotes": [
+          "Hardship requests often disclose medical, job-loss, or family details. Collect only what the decision needs."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-servicing-compliance-gap",
+      "label": "Unclear Servicing Compliance Obligations",
+      "type": "solution",
+      "parentId": "task-nph-delinquency",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "RESPA/TILA"
+      ],
+      "tags": [
+        "compliance",
+        "servicing"
+      ],
+      "details": {
+        "description": "Staff aren’t sure which federal servicing rules apply to the organization’s portfolio size and nonprofit status, so notices and escrow handling are inconsistent.",
+        "implementationSteps": [
+          "Have counsel determine which servicing exemptions apply.",
+          "Document required notices and timelines.",
+          "Consider an outside servicer if the requirements exceed staff capacity."
+        ],
+        "keyBlockers": [
+          "Cost of legal review."
+        ],
+        "privacyNotes": [
+          "Servicing files are borrower financial records. Retain and dispose of them under a written schedule."
+        ]
+      }
+    },
+    {
+      "id": "dom-nph-construction",
+      "label": "Construction & Repair",
+      "type": "domain",
+      "parentId": "ind-nonprofit-housing",
+      "childrenIds": [
+        "role-nph-site-supervisor",
+        "role-nph-repair-manager"
+      ],
+      "summary": "New home construction and critical home repairs."
+    },
+    {
+      "id": "role-nph-site-supervisor",
+      "label": "Construction Site Supervisor",
+      "type": "role",
+      "parentId": "dom-nph-construction",
+      "childrenIds": [
+        "task-nph-site-safety",
+        "task-nph-materials"
+      ],
+      "summary": "Runs build sites staffed largely by rotating volunteers."
+    },
+    {
+      "id": "task-nph-site-safety",
+      "label": "Job Site Safety with Rotating Volunteers",
+      "type": "scenario",
+      "parentId": "role-nph-site-supervisor",
+      "childrenIds": [
+        "sol-nph-safety-briefing",
+        "sol-nph-waiver-gate",
+        "sol-nph-incident-gap"
+      ],
+      "tags": [
+        "safety",
+        "volunteers"
+      ],
+      "details": {
+        "context": "Every day brings a new crew of volunteers, many of whom have never used power tools or worked on a roof.",
+        "problemStatement": "Supervisors re-explain the basics daily, and gaps in training and paperwork create injury and liability risk."
+      }
+    },
+    {
+      "id": "sol-nph-safety-briefing",
+      "label": "Standard Daily Safety Briefing & Task Gating",
+      "type": "solution",
+      "parentId": "task-nph-site-safety",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "OSHA"
+      ],
+      "tags": [
+        "safety",
+        "osha"
+      ],
+      "details": {
+        "description": "A scripted morning safety briefing, plus a rule that only volunteers with recorded training may use specified tools or work at height.",
+        "implementationSteps": [
+          "Script a 10-minute briefing covering site hazards and PPE.",
+          "Define which tasks need prior training.",
+          "Assign experienced crew leaders to each work zone."
+        ],
+        "keyBlockers": [
+          "Pressure to keep large groups busy."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-waiver-gate",
+      "label": "Digital Waivers & Training Check at Sign-In",
+      "type": "solution",
+      "parentId": "task-nph-site-safety",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "COPPA"
+      ],
+      "tags": [
+        "waivers",
+        "onboarding"
+      ],
+      "details": {
+        "description": "Volunteers sign waivers and complete a short safety video online before their shift. Sign-in confirms both and checks the minimum age.",
+        "implementationSteps": [
+          "Collect waivers and training online during signup.",
+          "Have site check-in confirm completion.",
+          "Require parent or guardian consent for minors."
+        ],
+        "keyBlockers": [
+          "Walk-up volunteers on build day."
+        ],
+        "privacyNotes": [
+          "Don’t collect personal information online from children under 13 without verifiable parental consent. Most build sites set a higher minimum age anyway.",
+          "Emergency contacts and medical notes should be visible only to site leaders."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-incident-gap",
+      "label": "Paper Incident Reporting",
+      "type": "solution",
+      "parentId": "task-nph-site-safety",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "OSHA",
+        "State Breach Laws"
+      ],
+      "tags": [
+        "incident reporting"
+      ],
+      "details": {
+        "description": "Injuries and near-misses are recorded on paper forms, if at all, so there is no record of trends and insurance claims stall.",
+        "implementationSteps": [
+          "Adopt a mobile incident and near-miss form.",
+          "Review trends monthly.",
+          "Keep injury records separate from volunteer profiles."
+        ],
+        "keyBlockers": [
+          "Underreporting of near-misses."
+        ],
+        "privacyNotes": [
+          "Injury records contain health information. Restrict access to safety and HR staff."
+        ]
+      }
+    },
+    {
+      "id": "task-nph-materials",
+      "label": "Materials Estimating & Donated Materials",
+      "type": "scenario",
+      "parentId": "role-nph-site-supervisor",
+      "childrenIds": [
+        "sol-nph-takeoff-ai",
+        "sol-nph-material-inventory"
+      ],
+      "tags": [
+        "materials",
+        "cost control"
+      ],
+      "details": {
+        "context": "Supervisors estimate lumber and materials by hand from plans, while donated materials arrive unpredictably and in odd quantities.",
+        "problemStatement": "Over-ordering wastes scarce funds, under-ordering stalls volunteer days, and donated stock goes untracked."
+      }
+    },
+    {
+      "id": "sol-nph-takeoff-ai",
+      "label": "AI-Assisted Material Takeoffs",
+      "type": "solution",
+      "parentId": "task-nph-materials",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "estimating",
+        "construction"
+      ],
+      "details": {
+        "description": "Generate a material list from standard house plans, which the supervisor adjusts for site conditions and donated stock.",
+        "implementationSteps": [
+          "Start with the organization’s standard home designs.",
+          "Compare AI takeoffs against actual usage on recent builds.",
+          "Have the supervisor approve every order."
+        ],
+        "keyBlockers": [
+          "Non-standard designs and renovation work."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-material-inventory",
+      "label": "Shared Materials Inventory",
+      "type": "solution",
+      "parentId": "task-nph-materials",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "inventory",
+        "donations"
+      ],
+      "details": {
+        "description": "Log donated and surplus materials in a shared inventory that construction and the ReStore both draw from.",
+        "implementationSteps": [
+          "Barcode or tag materials at intake.",
+          "Reserve materials for upcoming builds.",
+          "Route surplus to the ReStore for sale."
+        ],
+        "keyBlockers": [
+          "Discipline in logging materials on busy days."
+        ]
+      }
+    },
+    {
+      "id": "role-nph-repair-manager",
+      "label": "Home Repair Program Manager",
+      "type": "role",
+      "parentId": "dom-nph-construction",
+      "childrenIds": [
+        "task-nph-repair-triage"
+      ],
+      "summary": "Runs critical home repair for existing low-income homeowners."
+    },
+    {
+      "id": "task-nph-repair-triage",
+      "label": "Critical Repair Request Triage",
+      "type": "scenario",
+      "parentId": "role-nph-repair-manager",
+      "childrenIds": [
+        "sol-nph-repair-photo-triage",
+        "sol-nph-repair-rubric",
+        "sol-nph-waitlist-gap"
+      ],
+      "tags": [
+        "home repair",
+        "aging in place"
+      ],
+      "details": {
+        "context": "Older and disabled homeowners request urgent repairs, such as roofs, ramps, and furnaces, by phone. Requests pile up on a waitlist with little detail.",
+        "problemStatement": "The most dangerous conditions aren’t prioritized, and site visits are wasted on ineligible or out-of-scope jobs."
+      }
+    },
+    {
+      "id": "sol-nph-repair-photo-triage",
+      "label": "Photo-Based Scope Triage",
+      "type": "solution",
+      "parentId": "task-nph-repair-triage",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "Fair Housing Act"
+      ],
+      "tags": [
+        "triage",
+        "photos"
+      ],
+      "details": {
+        "description": "Homeowners or caseworkers submit photos and a description, and AI drafts a scope estimate and urgency flag before the site visit.",
+        "implementationSteps": [
+          "Collect photos through the intake form or a caseworker visit.",
+          "Draft scope and urgency for staff review.",
+          "Use it only to prioritize visits, never to deny service."
+        ],
+        "keyBlockers": [
+          "Many homeowners can’t take or send photos."
+        ],
+        "privacyNotes": [
+          "Photos of home interiors can reveal health conditions, valuables, and family members. Store them securely, and delete them once the job closes."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-repair-rubric",
+      "label": "Repair Prioritization Rubric",
+      "type": "solution",
+      "parentId": "task-nph-repair-triage",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "Fair Housing Act"
+      ],
+      "tags": [
+        "prioritization",
+        "accessibility"
+      ],
+      "details": {
+        "description": "A published rubric that ranks requests by health and safety risk, accessibility needs, and household vulnerability.",
+        "implementationSteps": [
+          "Define urgency tiers, such as no heat, structural, accessibility, and cosmetic.",
+          "Score every request the same way.",
+          "Review the waitlist weekly."
+        ],
+        "keyBlockers": [
+          "Funding restrictions tied to specific repair types."
+        ],
+        "privacyNotes": [
+          "Disability and health details justify priority, so record them minimally and restrict access."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-waitlist-gap",
+      "label": "No Central Repair Waitlist",
+      "type": "solution",
+      "parentId": "task-nph-repair-triage",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HUD Grant Rules"
+      ],
+      "tags": [
+        "case management"
+      ],
+      "details": {
+        "description": "Requests live in voicemails, notebooks, and email, so no one knows how long people have waited or which funds they qualify for.",
+        "implementationSteps": [
+          "Put every request into one case-management system.",
+          "Record funding eligibility at intake.",
+          "Report wait times by tier."
+        ],
+        "keyBlockers": [
+          "Staff capacity to migrate records."
+        ],
+        "privacyNotes": [
+          "Income documentation for grant-funded repairs must be kept as the funding source requires."
+        ]
+      }
+    },
+    {
+      "id": "dom-nph-volunteers",
+      "label": "Volunteer Engagement",
+      "type": "domain",
+      "parentId": "ind-nonprofit-housing",
+      "childrenIds": [
+        "role-nph-volunteer-coordinator"
+      ],
+      "summary": "Recruiting, scheduling, and retaining volunteers."
+    },
+    {
+      "id": "role-nph-volunteer-coordinator",
+      "label": "Volunteer Coordinator",
+      "type": "role",
+      "parentId": "dom-nph-volunteers",
+      "childrenIds": [
+        "task-nph-volunteer-scheduling"
+      ],
+      "summary": "Schedules individual and corporate volunteers across sites."
+    },
+    {
+      "id": "task-nph-volunteer-scheduling",
+      "label": "Volunteer Scheduling & Site Capacity",
+      "type": "scenario",
+      "parentId": "role-nph-volunteer-coordinator",
+      "childrenIds": [
+        "sol-nph-volunteer-signup",
+        "sol-nph-volunteer-faq-bot",
+        "sol-nph-crew-leaders"
+      ],
+      "tags": [
+        "volunteers",
+        "scheduling"
+      ],
+      "details": {
+        "context": "Corporate groups, faith groups, and individuals book build days by email. Sites have strict capacity and skill limits.",
+        "problemStatement": "Coordinators spend days on email, sites end up overbooked or empty, and no-shows waste supervisor time."
+      }
+    },
+    {
+      "id": "sol-nph-volunteer-signup",
+      "label": "Online Shift Signup with Capacity Limits",
+      "type": "solution",
+      "parentId": "task-nph-volunteer-scheduling",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "COPPA",
+        "TCPA"
+      ],
+      "tags": [
+        "scheduling",
+        "volunteers"
+      ],
+      "details": {
+        "description": "Volunteers book shifts online with capacity caps, skill and age rules, waivers, and automatic reminders.",
+        "implementationSteps": [
+          "Publish shifts with capacity and minimum age.",
+          "Let group leaders register their teams.",
+          "Send reminder and cancellation messages automatically."
+        ],
+        "keyBlockers": [
+          "Corporate groups expecting custom arrangements."
+        ],
+        "privacyNotes": [
+          "Collect volunteer data only for scheduling and safety, and honor opt-outs from marketing.",
+          "Get consent before texting reminders."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-volunteer-faq-bot",
+      "label": "Volunteer FAQ Assistant",
+      "type": "solution",
+      "parentId": "task-nph-volunteer-scheduling",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "chatbot"
+      ],
+      "details": {
+        "description": "A website assistant answers common volunteer questions (what to wear, parking, age rules, group sizes) from published pages, and hands off to a coordinator.",
+        "implementationSteps": [
+          "Ground it in the volunteer pages and site guides.",
+          "Escalate group bookings to staff.",
+          "Review unanswered questions monthly."
+        ],
+        "keyBlockers": [
+          "Outdated website content."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-crew-leaders",
+      "label": "Crew Leader Program",
+      "type": "solution",
+      "parentId": "task-nph-volunteer-scheduling",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "leadership",
+        "retention"
+      ],
+      "details": {
+        "description": "Train experienced repeat volunteers as crew leaders who run safety briefings and supervise small teams, multiplying supervisor capacity.",
+        "implementationSteps": [
+          "Identify volunteers with 10 or more build days.",
+          "Run a crew-leader training.",
+          "Recognize and retain crew leaders."
+        ],
+        "keyBlockers": [
+          "Crew-leader burnout."
+        ]
+      }
+    },
+    {
+      "id": "dom-nph-restore",
+      "label": "ReStore Retail",
+      "type": "domain",
+      "parentId": "ind-nonprofit-housing",
+      "childrenIds": [
+        "role-nph-restore-manager"
+      ],
+      "summary": "Donated home-goods stores that fund the mission."
+    },
+    {
+      "id": "role-nph-restore-manager",
+      "label": "ReStore Manager",
+      "type": "role",
+      "parentId": "dom-nph-restore",
+      "childrenIds": [
+        "task-nph-restore-pricing",
+        "task-nph-donation-pickups"
+      ],
+      "summary": "Runs the store, donations, and pickup trucks."
+    },
+    {
+      "id": "task-nph-restore-pricing",
+      "label": "Pricing Donated Inventory",
+      "type": "scenario",
+      "parentId": "role-nph-restore-manager",
+      "childrenIds": [
+        "sol-nph-price-suggest",
+        "sol-nph-pricing-guide"
+      ],
+      "tags": [
+        "restore",
+        "retail"
+      ],
+      "details": {
+        "context": "Thousands of one-of-a-kind donated items (cabinets, appliances, furniture) arrive each month and must be priced quickly by volunteers.",
+        "problemStatement": "Inconsistent pricing leaves money on the table or items sitting for weeks, and the floor fills up."
+      }
+    },
+    {
+      "id": "sol-nph-price-suggest",
+      "label": "Photo-Based Price Suggestions",
+      "type": "solution",
+      "parentId": "task-nph-restore-pricing",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "public",
+      "tags": [
+        "pricing",
+        "retail"
+      ],
+      "details": {
+        "description": "Snap a photo of an item, and AI identifies it and suggests a price range from your own sales history and comparable listings.",
+        "implementationSteps": [
+          "Build a price history from POS data.",
+          "Show suggested prices to pricing volunteers.",
+          "Track sell-through time by category."
+        ],
+        "keyBlockers": [
+          "Unique or antique items."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-pricing-guide",
+      "label": "Pricing Guide & Markdown Schedule",
+      "type": "solution",
+      "parentId": "task-nph-restore-pricing",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "markdowns"
+      ],
+      "details": {
+        "description": "A category pricing guide plus color-tag markdowns by age on the floor.",
+        "implementationSteps": [
+          "Publish a category price guide.",
+          "Use color-coded date tags.",
+          "Mark down on a weekly schedule."
+        ],
+        "keyBlockers": [
+          "Volunteer turnover."
+        ]
+      }
+    },
+    {
+      "id": "task-nph-donation-pickups",
+      "label": "Donation Pickup Scheduling",
+      "type": "scenario",
+      "parentId": "role-nph-restore-manager",
+      "childrenIds": [
+        "sol-nph-pickup-routing",
+        "sol-nph-donation-prescreen"
+      ],
+      "tags": [
+        "donations",
+        "logistics"
+      ],
+      "details": {
+        "context": "Donors call to schedule free pickups. Trucks drive across the county, sometimes to find items that are damaged or unsellable.",
+        "problemStatement": "Wasted truck trips, long pickup waits, and frustrated donors."
+      }
+    },
+    {
+      "id": "sol-nph-pickup-routing",
+      "label": "Online Pickup Booking & Route Planning",
+      "type": "solution",
+      "parentId": "task-nph-donation-pickups",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "regulations": [
+        "TCPA"
+      ],
+      "tags": [
+        "routing",
+        "donations"
+      ],
+      "details": {
+        "description": "Donors book pickups online in zone-based time windows, and routes are planned automatically each morning.",
+        "implementationSteps": [
+          "Offer zone-based pickup days.",
+          "Plan routes automatically.",
+          "Text donors an arrival window, with consent."
+        ],
+        "keyBlockers": [
+          "Donors who prefer to call."
+        ],
+        "privacyNotes": [
+          "Donor addresses and schedules reveal when homes are empty. Restrict access, and purge old pickup records."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-donation-prescreen",
+      "label": "Photo Pre-Screen of Donations",
+      "type": "solution",
+      "parentId": "task-nph-donation-pickups",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "pre-screen"
+      ],
+      "details": {
+        "description": "Donors upload photos when booking, and AI flags items the store doesn’t accept (damaged, recalled, or banned categories) before the truck rolls.",
+        "implementationSteps": [
+          "Encode the acceptance policy.",
+          "Flag likely rejects for staff confirmation.",
+          "Explain the reasons to donors politely."
+        ],
+        "keyBlockers": [
+          "Photos don’t always show damage."
+        ],
+        "privacyNotes": [
+          "Donor photos may show home interiors and people. Delete them after the pickup."
+        ]
+      }
+    },
+    {
+      "id": "dom-nph-development",
+      "label": "Development & Grants",
+      "type": "domain",
+      "parentId": "ind-nonprofit-housing",
+      "childrenIds": [
+        "role-nph-development-manager",
+        "role-nph-grants-manager"
+      ],
+      "summary": "Fundraising, donor relations, and grant compliance."
+    },
+    {
+      "id": "role-nph-development-manager",
+      "label": "Development Manager",
+      "type": "role",
+      "parentId": "dom-nph-development",
+      "childrenIds": [
+        "task-nph-donor-acknowledgments"
+      ],
+      "summary": "Manages donors, campaigns, and gift processing."
+    },
+    {
+      "id": "task-nph-donor-acknowledgments",
+      "label": "Gift Processing & Donor Acknowledgments",
+      "type": "scenario",
+      "parentId": "role-nph-development-manager",
+      "childrenIds": [
+        "sol-nph-gift-receipts",
+        "sol-nph-donor-drafts",
+        "sol-nph-donor-data-gap"
+      ],
+      "tags": [
+        "fundraising",
+        "donors"
+      ],
+      "details": {
+        "context": "Gifts arrive by check, online, through events, and as in-kind donations. Staff key them into a donor database and write thank-you letters by hand.",
+        "problemStatement": "Acknowledgments go out late or not at all, duplicate donor records skew reports, and tax receipts may be missing required language."
+      }
+    },
+    {
+      "id": "sol-nph-gift-receipts",
+      "label": "Automated Gift Receipts & Acknowledgments",
+      "type": "solution",
+      "parentId": "task-nph-donor-acknowledgments",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "ready",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "IRS Substantiation",
+        "State Breach Laws"
+      ],
+      "tags": [
+        "receipts",
+        "stewardship"
+      ],
+      "details": {
+        "description": "Generate compliant receipts and thank-you letters automatically when a gift is recorded, including year-end summaries.",
+        "implementationSteps": [
+          "Build templates with the required substantiation language.",
+          "Trigger receipts on gift entry.",
+          "Send annual giving summaries in January."
+        ],
+        "keyBlockers": [
+          "In-kind gifts need manual description and valuation rules."
+        ],
+        "privacyNotes": [
+          "Donor payment details should stay in the payment processor, not in the donor database or spreadsheets."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-donor-drafts",
+      "label": "AI-Drafted Donor Communications",
+      "type": "solution",
+      "parentId": "task-nph-donor-acknowledgments",
+      "childrenIds": [],
+      "solutionCategory": "AI Solution",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "communications",
+        "storytelling"
+      ],
+      "details": {
+        "description": "Draft personalized thank-you notes, impact updates, and appeal variations from approved stories, for staff to edit.",
+        "implementationSteps": [
+          "Build an approved library of family stories, used with each family’s consent.",
+          "Draft within the CRM’s approved AI tools.",
+          "Have staff review every message before sending."
+        ],
+        "keyBlockers": [
+          "Generic-sounding drafts."
+        ],
+        "privacyNotes": [
+          "Don’t upload the donor list to consumer AI tools.",
+          "Partner-family stories and photos need each family’s written consent, especially details about income or hardship."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-donor-data-gap",
+      "label": "Duplicate & Incomplete Donor Records",
+      "type": "solution",
+      "parentId": "task-nph-donor-acknowledgments",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "internal",
+      "tags": [
+        "crm",
+        "data quality"
+      ],
+      "details": {
+        "description": "Event, online, and ReStore donors land in separate lists with duplicates, so the organization can’t see a donor’s full history.",
+        "implementationSteps": [
+          "Deduplicate and merge records.",
+          "Set data-entry standards.",
+          "Integrate online giving and event platforms with the CRM."
+        ],
+        "keyBlockers": [
+          "Multiple legacy systems."
+        ]
+      }
+    },
+    {
+      "id": "role-nph-grants-manager",
+      "label": "Grants & Compliance Manager",
+      "type": "role",
+      "parentId": "dom-nph-development",
+      "childrenIds": [
+        "task-nph-grant-reporting"
+      ],
+      "summary": "Manages government and foundation grants."
+    },
+    {
+      "id": "task-nph-grant-reporting",
+      "label": "Government Grant Compliance Reporting",
+      "type": "scenario",
+      "parentId": "role-nph-grants-manager",
+      "childrenIds": [
+        "sol-nph-grant-reports",
+        "sol-nph-data-dictionary",
+        "sol-nph-demographic-gap"
+      ],
+      "tags": [
+        "grants",
+        "compliance"
+      ],
+      "details": {
+        "context": "HOME, CDBG, and foundation grants each require different reports on households served, incomes, demographics, and costs.",
+        "problemStatement": "Staff rebuild reports from scattered files every quarter, and monitoring visits find missing documentation."
+      }
+    },
+    {
+      "id": "sol-nph-grant-reports",
+      "label": "Report Generation from Case Management",
+      "type": "solution",
+      "parentId": "task-nph-grant-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Automation Fit",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HUD Grant Rules",
+        "GLBA"
+      ],
+      "tags": [
+        "reporting",
+        "hud"
+      ],
+      "details": {
+        "description": "Pull household, income, and cost data from case management and accounting into funder report templates, with document checklists per household.",
+        "implementationSteps": [
+          "Tag each household and project with its funding sources.",
+          "Build report templates per funder.",
+          "Run a pre-monitoring file checklist."
+        ],
+        "keyBlockers": [
+          "Case management and accounting aren’t linked."
+        ],
+        "privacyNotes": [
+          "Reports to funders should be aggregate unless the grant requires household-level detail.",
+          "Income files are financial records. Restrict access and follow retention requirements."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-data-dictionary",
+      "label": "Shared Data Definitions Across Programs",
+      "type": "solution",
+      "parentId": "task-nph-grant-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Process Improvement",
+      "readiness": "ready",
+      "dataSensitivity": "internal",
+      "tags": [
+        "data definitions"
+      ],
+      "details": {
+        "description": "One definition of “household,” “income,” and “served” across programs, so numbers match from funder to funder.",
+        "implementationSteps": [
+          "Inventory definitions each funder uses.",
+          "Map them to one internal standard.",
+          "Train staff on data entry."
+        ],
+        "keyBlockers": [
+          "Funders define terms differently."
+        ]
+      }
+    },
+    {
+      "id": "sol-nph-demographic-gap",
+      "label": "Inconsistent Beneficiary Demographic Data",
+      "type": "solution",
+      "parentId": "task-nph-grant-reporting",
+      "childrenIds": [],
+      "solutionCategory": "Requirements Gap",
+      "readiness": "needs-work",
+      "dataSensitivity": "regulated",
+      "regulations": [
+        "HUD Grant Rules",
+        "Fair Housing Act"
+      ],
+      "tags": [
+        "demographics",
+        "equity"
+      ],
+      "details": {
+        "description": "Race, ethnicity, and household data required by some funders is collected inconsistently, so reports have gaps.",
+        "implementationSteps": [
+          "Use the funder’s required categories at intake.",
+          "Explain to families why it’s asked and that answering is voluntary where it is.",
+          "Store it separately from selection decisions."
+        ],
+        "keyBlockers": [
+          "Families reluctant to share demographic data."
+        ],
+        "privacyNotes": [
+          "Demographic data must never influence selection. Keep it out of reviewers’ view during selection."
         ]
       }
     }
